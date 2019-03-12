@@ -1,16 +1,26 @@
 package stringcheesedevs.android.apps.com.trailblazer.Models;
 
-import android.util.Log;
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Property;
+import org.greenrobot.greendao.annotation.Generated;
 
-import java.text.DecimalFormat;
-
+@Entity(nameInDb = "comment")
 public class City {
+    @Property(nameInDb = "picurl")
     String picURL;
+    @Property(nameInDb = "description")
     String description;
+    @Property(nameInDb = "name")
     String name;
+    @Property(nameInDb = "tourcode")
     String tourCode;
-    public double latitude;
-    public double longitude;
+    @Property(nameInDb = "latitude")
+    double latitude;
+    @Property(nameInDb = "longitude")
+    double longitude;
+    @Id(autoincrement = true)
+    Long id;
 
     public City(String picURL, String description, String name, String tourCode, double latitude, double longitude) {
         this.picURL = picURL;
@@ -19,6 +29,22 @@ public class City {
         this.tourCode = tourCode;
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    @Generated(hash = 1722782517)
+    public City(String picURL, String description, String name, String tourCode, double latitude, double longitude,
+                Long id) {
+        this.picURL = picURL;
+        this.description = description;
+        this.name = name;
+        this.tourCode = tourCode;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.id = id;
+    }
+
+    @Generated(hash = 750791287)
+    public City() {
     }
 
     public String getpicURL() {
@@ -69,5 +95,20 @@ public class City {
         this.longitude = longitude;
     }
 
+    public String getPicURL() {
+        return this.picURL;
+    }
+
+    public void setPicURL(String picURL) {
+        this.picURL = picURL;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
 }
