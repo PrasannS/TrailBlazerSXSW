@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TrailBlazer</string>
+    <string name="title_activity_dashboard">Map</string>
 </resources>
