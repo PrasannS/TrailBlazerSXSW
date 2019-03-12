@@ -1,16 +1,26 @@
 package stringcheesedevs.android.apps.com.trailblazer.Models;
 
-import android.util.Log;
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Property;
+import org.greenrobot.greendao.annotation.Generated;
 
-import java.text.DecimalFormat;
-
+@Entity(nameInDb = "comment")
 public class City {
+    @Property(nameInDb = "picurl")
     String picURL;
+    @Property(nameInDb = "description")
     String description;
+    @Property(nameInDb = "name")
     String name;
+    @Property(nameInDb = "tourcode")
     String tourCode;
+    @Property(nameInDb = "latitude")
     double latitude;
+    @Property(nameInDb = "longitude")
     double longitude;
+    @Id(autoincrement = true)
+    Long id;
 
     public City(String picURL, String description, String name, String tourCode, double latitude, double longitude) {
         this.picURL = picURL;
@@ -19,6 +29,22 @@ public class City {
         this.tourCode = tourCode;
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    @Generated(hash = 1722782517)
+    public City(String picURL, String description, String name, String tourCode, double latitude, double longitude,
+            Long id) {
+        this.picURL = picURL;
+        this.description = description;
+        this.name = name;
+        this.tourCode = tourCode;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.id = id;
+    }
+
+    @Generated(hash = 750791287)
+    public City() {
     }
 
     public String getpicURL() {
@@ -69,26 +95,20 @@ public class City {
         this.longitude = longitude;
     }
 
-    public static double getDistanceKm(City s, City o) {
-        int Radius=6371;//radius of earth in Km
-        double lat1 = s.latitude;
-        double lat2 = o.latitude;
-        double lon1 = s.longitude;
-        double lon2 = o.longitude;
-        double dLat = Math.toRadians(lat2-lat1);
-        double dLon = Math.toRadians(lon2-lon1);
-        double a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-                Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) *
-        Math.sin(dLon/2) * Math.sin(dLon/2);
-        double c = 2 * Math.asin(Math.sqrt(a));
-        double valueResult= Radius*c;
-        double km=valueResult/1;
-        DecimalFormat newFormat = new DecimalFormat("####");
-        int kmInDec =  Integer.valueOf(newFormat.format(km));
-        double meter=valueResult%1000;
-        int  meterInDec= Integer.valueOf(newFormat.format(meter));
-        //Log.i("Radius Value",""+valueResult+"   KM  "+kmInDec+" Meter   "+meterInDec);
-
-        return Radius * c;
+    public String getPicURL() {
+        return this.picURL;
     }
+
+    public void setPicURL(String picURL) {
+        this.picURL = picURL;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
 }
