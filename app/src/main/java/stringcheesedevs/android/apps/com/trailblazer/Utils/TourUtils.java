@@ -16,7 +16,7 @@ public class TourUtils {
         double[][] dist = new double[allCities.size()][allCities.size()];
         for (int i = 0; i < dist.length; i++) {
             for (int j = i + 1; j < dist[i].length; j++) {
-                double btwn = CityUtils.getDistanceKm(allCities.get(i).latitude, allCities.get(j).latitude, allCities.get(i).longitude, allCities.get(j).longitude);
+                double btwn = CityUtils.getDistanceKm(allCities.get(i).getLatitude(), allCities.get(j).getLatitude(), allCities.get(i).getLongitude(), allCities.get(j).getLongitude());
                 dist[i][j] = btwn;
                 dist[j][i] = btwn;
             }
