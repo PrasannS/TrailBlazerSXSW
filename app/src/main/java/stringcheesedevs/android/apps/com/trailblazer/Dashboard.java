@@ -11,51 +11,43 @@ import android.widget.ArrayAdapter;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import org.greenrobot.greendao.query.Query;
+import org.greenrobot.greendao.query.WhereCondition;
+
 import java.util.List;
 
-import graphingcaculator.lcpsdysy.android.apps.com.graphingcalculator.Models.Formula;
-import graphingcaculator.lcpsdysy.android.apps.com.graphingcalculator.Models.FormulaName;
-import graphingcaculator.lcpsdysy.android.apps.com.graphingcalculator.Persistence.GraphingCalculatorDAO;
-import graphingcaculator.lcpsdysy.android.apps.com.graphingcalculator.CustomAutoCompleteView;
+import stringcheesedevs.android.apps.com.trailblazer.Models.Artist;
+import stringcheesedevs.android.apps.com.trailblazer.Models.ArtistDao;
+import stringcheesedevs.android.apps.com.trailblazer.Models.DaoSession;
 
-public class WikiActivity extends Activity {
+public class Dashboard extends Activity {
 
     public String cur;
-    public Formula curF;
     public TextView wikiframe;
-
-    GraphingCalculatorDAO datasource = null;
     CustomAutoCompleteView myAutoComplete;
 
     // adapter for auto-complete
     ArrayAdapter<String> myAdapter;
 
     // for database operations
-    DatabaseHandler databaseH;
 
     // just to add some initial value
     String[] item = new String[] {"Please search..."};
 
 
+    public DaoSession daoSession;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_wiki);
+        setContentView(R.layout.activity_dashboard);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        datasource = new GraphingCalculatorDAO(this.getApplicationContext());
-        datasource.open();
 
         wikiframe = (TextView) findViewById(R.id.wikiframe);
 
 
+        daoSession = ((TBApplication)getApplication()).getDaoSession();
         try{
-
-            // instantiate database handler
-            databaseH = new DatabaseHandler(WikiActivity.this);
-
-            // put sample data to database
-            insertSampleData();
 
             // autocompletetextview is in activity_main.xml
             myAutoComplete = (CustomAutoCompleteView) findViewById(R.id.myautocomplete);
@@ -72,8 +64,7 @@ public class WikiActivity extends Activity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     myAutoComplete.performCompletion();
                     cur = myAutoComplete.getText().toString();
-                    curF = datasource.getFormula(cur);
-                    wikiframe.setText(curF.toString());
+                    //TODO open up artist page
 
                 }
 
@@ -87,36 +78,30 @@ public class WikiActivity extends Activity {
         }
     }
 
-    public void insertSampleData(){
 
-        for(String s:FormulaListGenerator.chemFormulae){
-            if(!databaseH.create( new FormulaName(s)))break;
-        }
-        for(String s:FormulaListGenerator.mathFormulae){
-            if(!databaseH.create( new FormulaName(s)))break;
-        }
-        for(String s:FormulaListGenerator.physicsFormulae){
-            if(!databaseH.create( new FormulaName(s)))break;
-        }
-
-    }
 
     // this function is used in CustomAutoCompleteTextChangedListener.java
     public String[] getItemsFromDb(String searchTerm){
 
-        // add items on the array dynamically
-        List<FormulaName> products = databaseH.read(searchTerm);
-        int rowCount = products.size();
+        String sql = "";
+        sql += "SELECT * FROM " + ArtistDao.TABLENAME;
+        sql += " WHERE " + ArtistDao.Properties.Name + " LIKE '%" + searchTerm + "%'";
+        sql += " ORDER BY " + ArtistDao.Properties.Name + " DESC";
+        sql += " LIMIT 0,5";
 
-        String[] item = new String[rowCount];
-        int x = 0;
+        Query<Artist> query = daoSession.getArtistDao().queryBuilder().where(
+                new WhereCondition.StringCondition(sql)
+        ).build();
+        return getArtistNames(query.list());
+    }
 
-        for (FormulaName record : products) {
-
-            item[x] = record.objectName;
-            x++;
+    public String[] getArtistNames(List<Artist>artists){
+        String[] as = new String[artists.size()];
+        int cur = 0;
+        for (Artist a:artists){
+            as[cur] = a.getName();
+            cur++;
         }
-
-        return item;
+        return as;
     }
 }
