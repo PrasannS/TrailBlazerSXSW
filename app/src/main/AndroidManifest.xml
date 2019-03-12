@@ -39,7 +39,8 @@
         <activity
             android:name=".Dashboard"
             android:label="@string/title_activity_dashboard" />
-        <activity android:name=".ToursActivity"></activity>
+        <activity android:name=".ToursActivity" />
+        <activity android:name=".TourActivity"></activity>
     </application>
 
 </manifest>
