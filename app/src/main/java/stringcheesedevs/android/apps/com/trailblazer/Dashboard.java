@@ -2,6 +2,7 @@ package stringcheesedevs.android.apps.com.trailblazer;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
+import android.database.sqlite.SQLiteException;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -84,12 +85,11 @@ public class Dashboard extends Activity {
 
 
     // this function is used in CustomAutoCompleteTextChangedListener.java
-    public String[] getItemsFromDb(String searchTerm){
+    public String[] getItemsFromDb(String searchTerm) throws Exception{
 
         String sql = "";
         sql += "SELECT * FROM " + ArtistDao.TABLENAME;
         sql += " WHERE " + ArtistDao.Properties.Name + " LIKE '%" + searchTerm + "%'";
-        sql += " ORDER BY " + ArtistDao.Properties.Name + " DESC";
         sql += " LIMIT 0,5";
 
         Query<Artist> query = daoSession.getArtistDao().queryBuilder().where(

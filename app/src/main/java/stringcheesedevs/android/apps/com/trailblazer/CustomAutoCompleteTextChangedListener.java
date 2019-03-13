@@ -6,6 +6,8 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 
+import java.security.spec.ECField;
+
 import stringcheesedevs.android.apps.com.trailblazer.Models.DaoSession;
 
 public class CustomAutoCompleteTextChangedListener implements TextWatcher {
@@ -31,7 +33,7 @@ public class CustomAutoCompleteTextChangedListener implements TextWatcher {
     }
 
     @Override
-    public void onTextChanged(CharSequence userInput, int start, int before, int count) {
+    public void onTextChanged(CharSequence userInput, int start, int before, int count){
 
         // if you want to see in the logcat what the user types
         Log.e("tag", "User input: " + userInput);
@@ -39,10 +41,12 @@ public class CustomAutoCompleteTextChangedListener implements TextWatcher {
         Dashboard dashboard = ((Dashboard) context);
 
         // query the database based on the user input
-        if(dashboard.getItemsFromDb(userInput.toString()).length!=0)
-        dashboard.item = dashboard.getItemsFromDb(userInput.toString());
-        else {
-            String[] tests = {"Arjit Singh","Neha Kakkad","Palak Muchhal"};
+        try {
+            if (dashboard.getItemsFromDb(userInput.toString()).length != 0)
+                dashboard.item = dashboard.getItemsFromDb(userInput.toString());
+        }
+        catch (Exception e){
+            String[] tests = {"Arjit Singh", "Neha Kakkad", "Palak Muchhal"};
             dashboard.item = tests;
         }
 

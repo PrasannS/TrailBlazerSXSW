@@ -1766,12 +1766,12 @@ public class NamesUtils {
 
 public NamesUtils(Context c){
         DaoSession daoSession = ((TBApplication)c).getDaoSession();
-        if(daoSession.getArtistDao().loadAll().size()==0){
+        if(daoSession.getArtistDao().loadAll().size()==0)
             for(String s:names){
                 Artist a = new Artist();
                 a.setName(s);
+                a.setPicURL(s);
                 daoSession.getArtistDao().save(a);
             }
-        }
     }
 }
