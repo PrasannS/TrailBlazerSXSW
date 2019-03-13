@@ -11,10 +11,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 import stringcheesedevs.android.apps.com.trailblazer.APILoadServices.APILoader;
@@ -34,6 +31,8 @@ public class ToursActivity extends Activity {
         Intent intent = getIntent();
         String artistname = intent.getStringExtra("artist");
         String artistCode = NamesUtils.artistIDs[Arrays.binarySearch(NamesUtils.names, artistname)];
+        int artCode = NamesUtils.buzzCodes[Arrays.binarySearch(NamesUtils.names, artistname)];
+        Map<String,Double[]>data = APILoader.loadBuzz(artCode);
         daoSession = ((TBApplication)getApplication()).getDaoSession();
         List<City>cities = null;
         try {
