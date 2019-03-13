@@ -27,17 +27,24 @@ import stringcheesedevs.android.apps.com.trailblazer.GeneratedModel.Setlist.City
 import stringcheesedevs.android.apps.com.trailblazer.GeneratedModel.Setlist.Tour;
 import stringcheesedevs.android.apps.com.trailblazer.Models.CityDao;
 import stringcheesedevs.android.apps.com.trailblazer.Models.DaoSession;
+import stringcheesedevs.android.apps.com.trailblazer.Models.TourDao;
 
 public class TourActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     public DaoSession daoSession;
+    public stringcheesedevs.android.apps.com.trailblazer.Models.Tour tour;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         daoSession = ((TBApplication)getApplication()).getDaoSession();
         setContentView(R.layout.activity_tour);
+        String tourname = getIntent().getStringExtra("tourname");
+        List<stringcheesedevs.android.apps.com.trailblazer.Models.Tour> tours = daoSession.getTourDao().queryBuilder()
+                .where(TourDao.Properties.Name.eq(tourname))
+                .list();
+        tour = tours.get(0);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -58,10 +65,7 @@ public class TourActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        plotTour(googleMap,tour);
     }
 
     public void plotTour(GoogleMap googleMap, stringcheesedevs.android.apps.com.trailblazer.Models.Tour t){
