@@ -1,17 +1,26 @@
 package stringcheesedevs.android.apps.com.trailblazer;
 
+import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.Dash;
+import com.google.android.gms.maps.model.Gap;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PatternItem;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
+import java.util.Arrays;
 import java.util.List;
 
 import stringcheesedevs.android.apps.com.trailblazer.GeneratedModel.Setlist.City;
@@ -60,10 +69,24 @@ public class TourActivity extends FragmentActivity implements OnMapReadyCallback
         qb.where(CityDao.Properties.TourCode.eq(t.getCode()));
         qb.orderAsc(CityDao.Properties.Pos);
         List<stringcheesedevs.android.apps.com.trailblazer.Models.City> cities = qb.list();
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        LatLng prev = null;
         for(stringcheesedevs.android.apps.com.trailblazer.Models.City c:cities){
             LatLng p = new LatLng(c.getLatitude(),c.getLongitude());
-            googleMap.addMarker(new MarkerOptions().position(p).title("Marker in Sydney"));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(p));
+            googleMap.addMarker(new MarkerOptions().position(p).title(c.getDescription()));
+            builder.include(p);
+            if(prev!=null){
+                googleMap.addPolyline(new PolylineOptions()
+                        .add(p, prev)
+                        .width(3)
+                        .color(Color.BLACK));
+            }
+            prev = p;
         }
+
+        LatLngBounds bounds = builder.build();
+        int padding = 45; // offset from edges of the map in pixels
+        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+        googleMap.animateCamera(cu);
     }
 }
