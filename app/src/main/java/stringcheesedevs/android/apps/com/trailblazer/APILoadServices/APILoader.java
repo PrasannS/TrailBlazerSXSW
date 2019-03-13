@@ -14,7 +14,7 @@ import java.util.List;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.logging.HttpLoggingInterceptor;
+//import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,14 +37,33 @@ public class APILoader {
     private final static String setlistkey = "cd0dc450-b5ca-4d12-9f1e-410e19057f50";
 
     public static void main(String [] args){
-        loadPrevCities("6041bca6-d070-4894-8019-da9538f2c33d");
-    }
+        loadBuzz("03-01-2019", 794);
 
+        loadPrevCities("6041bca6-d070-4894-8019-da9538f2c33d");
+
+    }
+    public static void loadBuzz(String date, int artistID)
+    {
+        try
+        {
+            ProcessBuilder pb = new ProcessBuilder("curl", "-X", "GET", "https://api.buzzanglemusic.com/v2/artists/794/market/country/US?date=03-01-2019", "-H", "accept: application/json", "-H", "api-key: 8A08BBCC-9553-47B2-A56E-03C6F53AD6E4");
+            Process p = pb.start();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            for (int i = 0; i < 100; i++)
+                System.out.println(reader.readLine());
+
+        }
+        catch (Exception e)
+        {
+
+        }
+    }
 
     public static void loadPrevCities(String s) {
         try
-        { ProcessBuilder pb = new ProcessBuilder("curl", "-X", "GET", "--header", "Accept:", "application/xml", "--header", "x-api-key: cd0dc450-b5ca-4d12-9f1e-410e19057f50", "https://api.setlist.fm/rest/1.0/artist/6041bca6-d070-4894-8019-da9538f2c33d/setlists?p=1");
-        Process p = pb.start();
+        {
+            ProcessBuilder pb = new ProcessBuilder("curl", "-X", "GET", "--header", "Accept:", "application/xml", "--header", "x-api-key: cd0dc450-b5ca-4d12-9f1e-410e19057f50", "https://api.setlist.fm/rest/1.0/artist/" + s + "/setlists?p=1");
+            Process p = pb.start();
             BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
             for (int i = 0; i < 100; i++)
                 System.out.println(reader.readLine());
