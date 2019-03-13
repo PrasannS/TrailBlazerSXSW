@@ -132,6 +132,7 @@ public class APILoader {
                 else {
                     map = parseBuzz(line,map);
                 }
+                temp++;
             }
 
 
