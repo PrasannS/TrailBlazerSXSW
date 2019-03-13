@@ -12,7 +12,7 @@ import android.webkit.WebViewClient;
 
 public class SparkActivity extends AppCompatActivity {
     private WebView sparkBrowse;
-    String js = "javascript:document.getElementById('locationBox').value='Austin';";
+    String js = "javascript:document.getElementById(\"pac-input\").value = \"Houston, TX, USA\";";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

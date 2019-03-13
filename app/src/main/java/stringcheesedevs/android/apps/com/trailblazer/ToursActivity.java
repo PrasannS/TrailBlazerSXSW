@@ -8,10 +8,12 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import stringcheesedevs.android.apps.com.trailblazer.Models.Artist;
 import stringcheesedevs.android.apps.com.trailblazer.Models.Tour;
+import stringcheesedevs.android.apps.com.trailblazer.Utils.NamesUtils;
 
 public class ToursActivity extends AppCompatActivity {
 
@@ -25,6 +27,7 @@ public class ToursActivity extends AppCompatActivity {
         //TODO this is the artistname
         Intent intent = getIntent();
         String artistname = intent.getStringExtra("artist");
+        String artistCode = NamesUtils.artistIDs[Arrays.binarySearch(NamesUtils.names, artistname)];
 
         ArrayAdapter adapter = new ArrayAdapter<>(this,
                 R.layout.listview, getTourNames());
