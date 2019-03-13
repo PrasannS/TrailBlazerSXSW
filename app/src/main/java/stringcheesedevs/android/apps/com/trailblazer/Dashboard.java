@@ -13,6 +13,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import org.greenrobot.greendao.query.Query;
+import org.greenrobot.greendao.query.QueryBuilder;
 import org.greenrobot.greendao.query.WhereCondition;
 
 import java.util.List;
@@ -87,17 +88,10 @@ public class Dashboard extends Activity {
     // this function is used in CustomAutoCompleteTextChangedListener.java
     public String[] getItemsFromDb(String searchTerm) throws Exception{
 
-        String sql = "";
-        sql += "SELECT * FROM " + ArtistDao.TABLENAME;
-        sql += " WHERE " + ArtistDao.Properties.Name + " LIKE '%" + searchTerm + "%'";
-        sql += " LIMIT 0,5";
-
-        Query<Artist> query = daoSession.getArtistDao().queryBuilder().where(
-                new WhereCondition.StringCondition(sql)
-        ).build();
-
+        QueryBuilder qb = daoSession.getArtistDao().queryBuilder();
+        qb.where(ArtistDao.Properties.Name.like("%"+searchTerm+"%"));
         if(daoSession.getArtistDao().loadAll().size()!=0)
-        return getArtistNames(query.list());
+        return getArtistNames(qb.list());
         else
             return new String[0];
     }
