@@ -61,7 +61,9 @@ public class TourActivity extends FragmentActivity implements OnMapReadyCallback
         qb.orderAsc(CityDao.Properties.Pos);
         List<stringcheesedevs.android.apps.com.trailblazer.Models.City> cities = qb.list();
         for(stringcheesedevs.android.apps.com.trailblazer.Models.City c:cities){
-
+            LatLng p = new LatLng(c.getLatitude(),c.getLongitude());
+            googleMap.addMarker(new MarkerOptions().position(p).title("Marker in Sydney"));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(p));
         }
     }
 }
