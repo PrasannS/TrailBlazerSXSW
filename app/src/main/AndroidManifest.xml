@@ -42,7 +42,8 @@
         <activity android:name=".ToursActivity" />
         <activity
             android:name=".TourActivity"
-            android:label="@string/title_activity_tour"></activity>
+            android:label="@string/title_activity_tour" />
+        <activity android:name=".SparkActivity"></activity>
     </application>
 
 </manifest>
