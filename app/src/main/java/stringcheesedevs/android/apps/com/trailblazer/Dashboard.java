@@ -65,7 +65,7 @@ public class Dashboard extends Activity {
                     myAutoComplete.performCompletion();
                     cur = myAutoComplete.getText().toString();
                     //TODO open up artist page
-                    
+
 
                 }
 
