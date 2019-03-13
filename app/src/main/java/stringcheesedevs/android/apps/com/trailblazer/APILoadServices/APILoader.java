@@ -10,6 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -41,7 +42,25 @@ public class APILoader {
     }
 
     public static List<City> jsonparse(String json){
-        BufferedReader br = new BufferedReader();
+        Scanner scan = new Scanner(json);
+        String line ="";
+        City cur = new City();
+        List<City> cities = new ArrayList<>();
+        while(scan.hasNextLine()){
+            line = scan.nextLine();
+            if(line.contains("city id")){
+                cur.setName(line.substring(line.indexOf("name")+6,line.indexOf("state")-1));
+            }
+            else if(line.contains("coords")) {
+                cur.setLatitude(Double.parseDouble(line.substring(line.indexOf('=')+2,line.indexOf("long")-2)));
+                cur.setLongitude(Double.parseDouble(line.substring(line.lastIndexOf("=")+2,line.indexOf('>')-2)));
+                cities.add(cur);
+                cur = new City();
+            }
+
+            //if(line.contains())
+        }
+        return cities;
 
     }
 
@@ -54,6 +73,7 @@ public class APILoader {
             BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
             String line = reader.readLine();
             while (line != null){
+                System.out.println(line);
                 temp+=line;
                 line = reader.readLine();
             }
