@@ -1,5 +1,6 @@
 package stringcheesedevs.android.apps.com.trailblazer.APILoadServices;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -9,10 +10,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.Normalizer;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -29,6 +27,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import stringcheesedevs.android.apps.com.trailblazer.GeneratedModel.Setlist.Setlist_;
 import stringcheesedevs.android.apps.com.trailblazer.Models.City;
+import stringcheesedevs.android.apps.com.trailblazer.Models.DaoSession;
+import stringcheesedevs.android.apps.com.trailblazer.TBApplication;
 import stringcheesedevs.android.apps.com.trailblazer.Utils.NamesUtils;
 
 import static stringcheesedevs.android.apps.com.trailblazer.CustomAutoCompleteTextChangedListener.TAG;
@@ -43,6 +43,31 @@ public class APILoader {
     private final static String buzzanglekey = "";
     private final static String umgkey = "";
     private final static String setlistkey = "cd0dc450-b5ca-4d12-9f1e-410e19057f50";
+
+
+    public static List<City> jsonparse(String json){
+        Scanner scan = new Scanner(json);
+        String line ="";
+        City cur = new City();
+        List<City> cities = new ArrayList<>();
+        while(scan.hasNextLine()){
+            line = scan.nextLine();
+            if(line.contains("city id")){
+                cur.setName(line.substring(line.indexOf("name")+6,line.indexOf("state")-1));
+            }
+            else if(line.contains("coords")) {
+                cur.setLatitude(Double.parseDouble(line.substring(line.indexOf('=')+2,line.indexOf("long")-2)));
+                cur.setLongitude(Double.parseDouble(line.substring(line.lastIndexOf("=")+2,line.indexOf('>')-2)));
+                cities.add(cur);
+                cur = new City();
+            }
+
+            //if(line.contains())
+        }
+        return cities;
+
+    }
+
 
     public static Map<String,Double[]> parseBuzz(String json){
         Gson gson = new Gson();
@@ -157,10 +182,7 @@ public class APILoader {
         return map;
     }
 
-    public static void loadPrevCities(String s) {
-        try
-        {
-
+    public static List<City> loadPrevCities(String s) throws IOException{
             ProcessBuilder pb = new ProcessBuilder("curl", "-X", "GET", "--header", "Accept:", "application/xml", "--header", "x-api-key: cd0dc450-b5ca-4d12-9f1e-410e19057f50", "https://api.setlist.fm/rest/1.0/artist/" + s + "/setlists?p=1");
             Process p = pb.start();
             BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -170,11 +192,9 @@ public class APILoader {
                 System.out.println(line);
                 line = reader.readLine();
             }
-        }
-        catch (Exception e)
-        {
+            List<City> cities = jsonparse(line);
+            return cities;
 
-        }
 
 //        Interceptor interceptor = new Interceptor() {
 //            @Override

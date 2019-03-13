@@ -8,11 +8,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import stringcheesedevs.android.apps.com.trailblazer.APILoadServices.APILoader;
 import stringcheesedevs.android.apps.com.trailblazer.Models.Artist;
+import stringcheesedevs.android.apps.com.trailblazer.Models.City;
+import stringcheesedevs.android.apps.com.trailblazer.Models.DaoSession;
 import stringcheesedevs.android.apps.com.trailblazer.Models.Tour;
 import stringcheesedevs.android.apps.com.trailblazer.Utils.NamesUtils;
 
@@ -20,6 +24,7 @@ public class ToursActivity extends Activity {
 
     public List<Tour>tours;
     String artistname;
+    public DaoSession daoSession;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +34,18 @@ public class ToursActivity extends Activity {
         Intent intent = getIntent();
         String artistname = intent.getStringExtra("artist");
         String artistCode = NamesUtils.artistIDs[Arrays.binarySearch(NamesUtils.names, artistname)];
+        daoSession = ((TBApplication)getApplication()).getDaoSession();
+        List<City>cities = null;
+        try {
+            cities = APILoader.loadPrevCities(artistCode);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for(City c:cities){
+            daoSession.getCityDao().save(c);
+        }
 
-        ArrayAdapter adapter = new ArrayAdapter<>(this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 R.layout.listview, getTourNames());
 
         ListView listView = (ListView) findViewById(R.id.mobile_list);
