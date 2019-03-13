@@ -139,10 +139,7 @@ public class APILoader {
         Map<String,Double[]> map = new TreeMap<>();
         try
         {
-            String []weeks = {"2019-03-01"
-            ,"2019-03-08"
-            ,"2019-02-22"
-            ,"2019-02-15"};
+            String []weeks = {"2019-03-01"};
 
 
             int temp = 0;
