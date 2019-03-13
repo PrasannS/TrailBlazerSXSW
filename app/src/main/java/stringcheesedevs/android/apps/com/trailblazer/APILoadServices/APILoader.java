@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -83,8 +84,9 @@ public class APILoader {
             String name = "";
             String[] arr = NamesUtils.names[i].split(" ");
             for (int j = 0; j < arr.length - 1; j++)
-                name += arr[j] + "%20";
-            name+=arr[arr.length - 1];
+                name += Normalizer.normalize(arr[j], Normalizer.Form.NFKD) + "%20";
+            name+=Normalizer.normalize(arr[arr.length - 1], Normalizer.Form.NFKD);
+            name = name.replaceAll("[^\\p{ASCII}]", "");
             ProcessBuilder helpMe = new ProcessBuilder("curl", "-X", "GET", "https://api.buzzanglemusic.com/v2/artists/find?query=" + name, "-H", "accept: application/json", "-H", "api-key: 8A08BBCC-9553-47B2-A56E-03C6F53AD6E4");
             Process beingForcedIntoThis = helpMe.start();
             BufferedReader reader = new BufferedReader(new InputStreamReader(beingForcedIntoThis.getInputStream()));
@@ -94,9 +96,12 @@ public class APILoader {
                 int ind = line.indexOf("artist.cfm?id=");
                 ind += 14;
                 int endInd = ind;
-                while (line.charAt(endInd) != '"')
+                while (endInd < line.length() && line.charAt(endInd) != '"')
                     endInd++;
-                loadBuzz(Integer.parseInt(line.substring(ind, endInd)));
+                if (ind == 13)
+                    System.out.println("REMOVE " + NamesUtils.names[i]);
+                else
+                    System.out.println(line.substring(ind, endInd) + ",");
                 line = reader.readLine();
             }
 
