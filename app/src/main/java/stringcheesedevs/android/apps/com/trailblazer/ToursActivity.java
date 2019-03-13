@@ -1,5 +1,6 @@
 package stringcheesedevs.android.apps.com.trailblazer;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +16,7 @@ import stringcheesedevs.android.apps.com.trailblazer.Models.Artist;
 import stringcheesedevs.android.apps.com.trailblazer.Models.Tour;
 import stringcheesedevs.android.apps.com.trailblazer.Utils.NamesUtils;
 
-public class ToursActivity extends AppCompatActivity {
+public class ToursActivity extends Activity {
 
     public List<Tour>tours;
     String artistname;
