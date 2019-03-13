@@ -19,6 +19,8 @@ public class City {
     double latitude;
     @Property(nameInDb = "longitude")
     double longitude;
+    @Property(nameInDb = "position")
+    int pos;
     @Id(autoincrement = true)
     Long id;
 
@@ -31,15 +33,16 @@ public class City {
         this.longitude = longitude;
     }
 
-    @Generated(hash = 1722782517)
-    public City(String picURL, String description, String name, String tourCode, double latitude, double longitude,
-                Long id) {
+    @Generated(hash = 550284154)
+    public City(String picURL, String description, String name, String tourCode, double latitude, double longitude, int pos,
+            Long id) {
         this.picURL = picURL;
         this.description = description;
         this.name = name;
         this.tourCode = tourCode;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.pos = pos;
         this.id = id;
     }
 
@@ -109,6 +112,14 @@ public class City {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public int getPos() {
+        return this.pos;
+    }
+
+    public void setPos(int pos) {
+        this.pos = pos;
     }
 
 }

@@ -19,6 +19,7 @@ import java.util.List;
 import stringcheesedevs.android.apps.com.trailblazer.Models.Artist;
 import stringcheesedevs.android.apps.com.trailblazer.Models.ArtistDao;
 import stringcheesedevs.android.apps.com.trailblazer.Models.DaoSession;
+import stringcheesedevs.android.apps.com.trailblazer.Utils.NamesUtils;
 
 public class Dashboard extends Activity {
 
@@ -43,6 +44,7 @@ public class Dashboard extends Activity {
         setContentView(R.layout.activity_dashboard);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        NamesUtils n  = new NamesUtils(getApplication());
         wikiframe = (TextView) findViewById(R.id.wikiframe);
 
 
