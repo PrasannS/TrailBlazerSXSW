@@ -5,11 +5,11 @@ import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Property;
 import org.greenrobot.greendao.annotation.Generated;
 
-@Entity(nameInDb = "comment")
+@Entity(nameInDb = "artist")
 public class Artist {
-    @Property(nameInDb = "comment")
+    @Property(nameInDb = "name")
     String name;
-    @Property(nameInDb = "comment")
+    @Property(nameInDb = "picurl")
     String picURL;
     @Id(autoincrement = true)
     Long id;

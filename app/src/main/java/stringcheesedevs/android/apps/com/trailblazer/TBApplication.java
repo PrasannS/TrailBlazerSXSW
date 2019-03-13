@@ -13,7 +13,7 @@ import stringcheesedevs.android.apps.com.trailblazer.Models.DaoSession;
 
 public class TBApplication extends Application {
 
-    DatabaseOpenHelper helper;
+    TBOpenHelper helper;
     Database db;
     DaoMaster daoMaster;
     DaoSession daoSession;
@@ -21,7 +21,7 @@ public class TBApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        helper = new DaoMaster.DevOpenHelper(this, "notes-db", null);
+        helper = new TBOpenHelper(this, "trailblazerdb", null);
         db = helper.getWritableDb();
         daoMaster = new DaoMaster(db);
         daoSession = daoMaster.newSession();

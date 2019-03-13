@@ -65,6 +65,7 @@ public class Dashboard extends Activity {
                     myAutoComplete.performCompletion();
                     cur = myAutoComplete.getText().toString();
                     //TODO open up artist page
+                    
 
                 }
 
@@ -92,7 +93,11 @@ public class Dashboard extends Activity {
         Query<Artist> query = daoSession.getArtistDao().queryBuilder().where(
                 new WhereCondition.StringCondition(sql)
         ).build();
+
+        if(daoSession.getArtistDao().loadAll().size()!=0)
         return getArtistNames(query.list());
+        else
+            return new String[0];
     }
 
     public String[] getArtistNames(List<Artist>artists){
