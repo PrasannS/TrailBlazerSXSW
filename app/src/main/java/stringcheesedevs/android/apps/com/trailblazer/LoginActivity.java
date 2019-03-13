@@ -19,13 +19,17 @@ public class LoginActivity extends AppCompatActivity {
         opener.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openDashboard();
+                openSpark();
             }
         });
     }
 
     public void openDashboard(){
         Intent intent = new Intent(this,Dashboard.class);
+        startActivity(intent);
+    }
+    public void openSpark(){
+        Intent intent = new Intent(this,SparkActivity.class);
         startActivity(intent);
     }
 }
