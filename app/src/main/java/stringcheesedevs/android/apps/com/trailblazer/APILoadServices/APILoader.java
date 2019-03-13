@@ -22,6 +22,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import stringcheesedevs.android.apps.com.trailblazer.GeneratedModel.Setlist.Setlist_;
 import stringcheesedevs.android.apps.com.trailblazer.Models.City;
+import stringcheesedevs.android.apps.com.trailblazer.Utils.NamesUtils;
 
 import static stringcheesedevs.android.apps.com.trailblazer.CustomAutoCompleteTextChangedListener.TAG;
 
@@ -36,38 +37,73 @@ public class APILoader {
     private final static String umgkey = "";
     private final static String setlistkey = "cd0dc450-b5ca-4d12-9f1e-410e19057f50";
 
-    public static void main(String [] args){
-        loadBuzz("03-01-2019", 794);
+    public static void main(String [] args) throws IOException {
+        for (int i = 0; i < NamesUtils.names.length; i++){
+            String name = "";
+            String[] arr = NamesUtils.names[i].split(" ");
+            for (int j = 0; j < arr.length - 1; j++)
+                name += arr[j] + "%20";
+            name+=arr[arr.length - 1];
+            ProcessBuilder helpMe = new ProcessBuilder("curl", "-X", "GET", "https://api.buzzanglemusic.com/v2/artists/find?query=" + name, "-H", "accept: application/json", "-H", "api-key: 8A08BBCC-9553-47B2-A56E-03C6F53AD6E4");
+            Process beingForcedIntoThis = helpMe.start();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(beingForcedIntoThis.getInputStream()));
+            String line = reader.readLine();
+            while (line!=null)
+            {
+                int ind = line.indexOf("artist.cfm?id=");
+                ind += 14;
+                int endInd = ind;
+                while (line.charAt(endInd) != '"')
+                    endInd++;
+                loadBuzz(Integer.parseInt(line.substring(ind, endInd)));
+                line = reader.readLine();
+            }
 
-        loadPrevCities("6041bca6-d070-4894-8019-da9538f2c33d");
+        }
 
     }
-    public static void loadBuzz(String date, int artistID)
+    public static void loadBuzz(int artistID)
     {
+        double[] avgs = new double[5];
         try
         {
-            ProcessBuilder pb = new ProcessBuilder("curl", "-X", "GET", "https://api.buzzanglemusic.com/v2/artists/794/market/country/US?date=03-01-2019", "-H", "accept: application/json", "-H", "api-key: 8A08BBCC-9553-47B2-A56E-03C6F53AD6E4");
-            Process p = pb.start();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            for (int i = 0; i < 100; i++)
-                System.out.println(reader.readLine());
+            String []weeks = {"2019-03-01"
+            ,"2019-03-08"
+            ,"2019-02-22"
+            ,"2019-02-15"};
+
+            for(String week:weeks){
+                ProcessBuilder pb = new ProcessBuilder("curl", "-X", "GET", "https://api.buzzanglemusic.com/v2/artists/"+artistID+"/market/country/US?date="+week, "-H", "accept: application/json", "-H", "api-key: 8A08BBCC-9553-47B2-A56E-03C6F53AD6E4");
+                Process p = pb.start();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                String line = reader.readLine();
+                while (line!=null)
+                {
+                    System.out.println(line);
+                    line = reader.readLine();
+                }
+            }
+
 
         }
         catch (Exception e)
         {
-
         }
     }
 
     public static void loadPrevCities(String s) {
         try
         {
+
             ProcessBuilder pb = new ProcessBuilder("curl", "-X", "GET", "--header", "Accept:", "application/xml", "--header", "x-api-key: cd0dc450-b5ca-4d12-9f1e-410e19057f50", "https://api.setlist.fm/rest/1.0/artist/" + s + "/setlists?p=1");
             Process p = pb.start();
             BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            for (int i = 0; i < 100; i++)
-                System.out.println(reader.readLine());
-
+            String line = reader.readLine();
+            while (line!=null)
+            {
+                System.out.println(line);
+                line = reader.readLine();
+            }
         }
         catch (Exception e)
         {
