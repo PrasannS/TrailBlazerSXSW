@@ -1,4 +1,4 @@
-package stringcheesedevs.android.apps.com.trailblazer.UMG;
+package stringcheesedevs.android.apps.com.trailblazer.GeneratedModel.UMG;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

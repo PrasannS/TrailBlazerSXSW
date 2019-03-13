@@ -1,4 +1,4 @@
-package stringcheesedevs.android.apps.com.trailblazer.Setlist;
+package stringcheesedevs.android.apps.com.trailblazer.GeneratedModel.Setlist;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
