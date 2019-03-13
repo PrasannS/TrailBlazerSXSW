@@ -35,6 +35,7 @@ public class ToursActivity extends Activity {
 
         ListView listView = (ListView) findViewById(R.id.mobile_list);
         listView.setAdapter(adapter);
+
     }
 
     public void setTours(String artistname) {

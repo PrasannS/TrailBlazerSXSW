@@ -6,886 +6,876 @@ import stringcheesedevs.android.apps.com.trailblazer.Models.Artist;
 import stringcheesedevs.android.apps.com.trailblazer.Models.DaoSession;
 import stringcheesedevs.android.apps.com.trailblazer.TBApplication;
 
+import java.util.ArrayList;
+
 public class NamesUtils {
 
 
-    public static String[] names = {"10 cc"
-            ,"10 Years"
-            ,"2 Chainz"
-            ,"3 Doors Down"
-            ,"4minute"
-            ,"4 Strings"
-            ,"The 1975"
-            ,"5 Seconds of Summer"
-            ,"50 Cent"
-            ,"6ix9ine"
-            ,"Aaliyah"
-            ,"ABBA"
-            ,"Abandon All Ships"
-            ,"The All-American Rejects"
-            ,"The Airborne Toxic Event"
-            ,"Ace Hood"
-            ,"Ace of Base"
-            ,"Adassa"
-            ,"Admiral T"
-            ,"Afrojack"
-            ,"AGA"
-            ,"Airbourne"
-            ,"Aitana"
-            ,"AJR"
-            ,"Akon"
-            ,"Alan Tam"
-            ,"Alesso"
-            ,"Alexander Rybak"
-            ,"Alison Krauss"
-            ,"Alphabeat"
-            ,"All That Remains"
-            ,"All Time Low"
-            ,"Allstar Weekend"
-            ,"Aloe Blacc"
-            ,"Alter Bridge"
-            ,"Amaranthe"
-            ,"Angels & Airwaves"
-            ,"Anthrax"
-            ,"Alice Nine"
-            ,"Alphaville"
-            ,"AFI"
-            ,"After Midnight Project"
-            ,"Alessia Cara"
-            ,"Amy Holland"
-            ,"Amy Winehouse"
-            ,"Ana Guerra"
-            ,"Ana Moura"
-            ,"Anastacia"
-            ,"Anberlin"
-            ,"Andrea Bocelli"
-            ,"Anggun"
-            ,"Any Gabrielly"
-            ,"A-Mei"
-            ,"Apink"
-            ,"Apocalyptica"
-            ,"Armin Van Buuren"
-            ,"Arnaldo Antunes"
-            ,"Ariana Grande"
-            ,"A R Rahman"
-            ,"Aqua"
-            ,"The Aquabats"
-            ,"As It Is"
-            ,"Ashanti"
-            ,"Ashlee Simpson"
-            ,"Asher Roth"
-            ,"Ashes Divide"
-            ,"Ashton Shepherd"
-            ,"Asia"
-            ,"Astrid S"
-            ,"Asuca Hayashi"
-            ,"Atreyu"
-            ,"Audioslave"
-            ,"August Burns Red"
-            ,"Auliʻi Cravalho"
-            ,"Aura Dione"
-            ,"Avenged Sevenfold"
-            ,"Avicii"
-            ,"Aya Hirano"
-            ,"Ayọ"
-            ,"Babyface"
-            ,"BG"
-            ,"Baba Saad"
-            ,"Babi Xavier"
-            ,"Base Ball Bear"
-            ,"Bastille"
-            ,"Barei"
-            ,"BEAST"
-            ,"Bee Gees"
-            ,"The Beatles"
-            ,"Backstreet Boys"
-            ,"Belinda Peregrín"
-            ,"Beni Arashiro"
-            ,"Benny Benassi"
-            ,"Billy Blue"
-            ,"Bishop Lamont"
-            ,"Big Bang "
-            ,"Big Sean"
-            ,"Big Time Rush"
-            ,"Biquini Cavadão"
-            ,"Birdman"
-            ,"Björk"
-            ,"Blue"
-            ,"Buckcherry"
-            ,"The Black Eyed Peas"
-            ,"Blackpink "
-            ,"Black Tide"
-            ,"Black Veil Brides"
-            ,"Blaxy Girls"
-            ,"Blue October"
-            ,"Blood Raw"
-            ,"Bloodhound Gang"
-            ,"Bloom 06"
-            ,"Bob Marley"
-            ,"Bob Sinclar"
-            ,"Bobby McFerrin"
-            ,"Bohemia"
-            ,"Bombay Rockers"
-            ,"Bon Jovi"
-            ,"Bond"
-            ,"Bone Thugs-n-Harmony"
-            ,"Boston"
-            ,"The Bravery"
-            ,"Bradley Cooper"
-            ,"Brand New"
-            ,"Brandy"
-            ,"Breaking Benjamin"
-            ,"Bridgit Mendler"
-            ,"Bruna Guerin"
-            ,"Bruno Campos"
-            ,"Bruno & Marrone"
-            ,"Bryan Adams"
-            ,"Brynn Cartelli"
-            ,"Busta Rhymes"
-            ,"Butthole Surfers"
-            ,"BtoB "
-            ,"BTS "
-            ,"Boyzone"
-            ,"Boys Republic "
-            ,"Bow Wow"
-            ,"Bullet for My Valentine"
-            ,"Bun B"
-            ,"Buraka Som Sistema"
-            ,"Bushido"
-            ,"Camille"
-            ,"Caparezza"
-            ,"Capital Cities"
-            ,"Carlinhos Brown"
-            ,"Carlos Alazraqui"
-            ,"Carlos do Carmo"
-            ,"Carly Rae Jepsen"
-            ,"The Carpenters"
-            ,"Carrie Underwood"
-            ,"The Cranberries"
-            ,"The Crystal Method"
-            ,"The Cure"
-            ,"Cascada"
-            ,"Cassadee Pope"
-            ,"Cássia Eller"
-            ,"Cassie"
-            ,"Cash Cash"
-            ,"Cassper Nyovest"
-            ,"Cazuza"
-            ,"Cedric Gervais"
-            ,"Cepeda"
-            ,"Cinema Bizarre"
-            ,"City Boy"
-            ,"Craig David"
-            ,"Chamillionaire"
-            ,"Charlee"
-            ,"Charles Aznavour"
-            ,"Charles Hamilton"
-            ,"Chay Suede"
-            ,"The Chemical Brothers"
-            ,"Chenoa"
-            ,"Cher"
-            ,"Cher Lloyd"
-            ,"Cherish"
-            ,"Cheryl"
-            ,"Chester French"
-            ,"Chilla Kiana"
-            ,"Children Collide"
-            ,"Chicane"
-            ,"Children of Bodom"
-            ,"Chris Cornell"
-            ,"Chris Daughtry"
-            ,"Chitãozinho & Xororó"
-            ,"Cimorelli"
-            ,"Claude Kelly"
-            ,"Coal Chamber"
-            ,"Christina Milian"
-            ,"Christina Grimmie"
-            ,"Chrisette Michelle"
-            ,"Chumbawamba"
-            ,"Clementino"
-            ,"Clouds"
-            ,"Club Dogo"
-            ,"Colbie Caillat"
-            ,"Colby O'Donis"
-            ,"Coldplay"
-            ,"Common"
-            ,"Corson"
-            ,"Cory Gunz"
-            ,"Counting Crows"
-            ,"Clique Girlz"
-            ,"Charles Hamilton"
-            ,"Crashdïet"
-            ,"Ciara"
-            ,"Cine"
-            ,"CPM 22"
-            ,"Crazy Frog"
-            ,"Crazy Town"
-            ,"Creamy"
-            ,"Crystal Castles"
-            ,"Crystal Kay"
-            ,"Curren$y"
-            ,"Cut Copy"
-            ,"Cyndi Lauper"
-            ,"DeLon"
-            ,"D12"
-            ,"D. Brown"
-            ,"Da Mouth"
-            ,"Daddy Yankee"
-            ,"Daiyan Trisha"
-            ,"Dan Black"
-            ,"Dan Reynolds"
-            ,"Daniel Merriweather"
-            ,"Danzig"
-            ,"Dark Tranquility"
-            ,"Darren Espanto"
-            ,"David Banner"
-            ,"David Bisbal"
-            ,"David Bustamante"
-            ,"David Fonseca"
-            ,"David Gray"
-            ,"David Guetta"
-            ,"David Nail"
-            ,"Darude"
-            ,"Days Difference"
-            ,"Dead by April"
-            ,"Debbie Harry"
-            ,"Dave Matthews Band"
-            ,"Deadmau5"
-            ,"Death "
-            ,"Dean"
-            ,"Deep Purple"
-            ,"Demi Lovato"
-            ,"Denez Prigent"
-            ,"Depeche Mode"
-            ,"Desiigner"
-            ,"Diamond Platnumz"
-            ,"Dido"
-            ,"Dtidrik Solli-Tangenh"
-            ,"Die Antwoord"
-            ,"Dierks Bentley"
-            ,"Dire Straits"
-            ,"Dirty Vegas"
-            ,"Dima Bilan"
-            ,"Divine Brown"
-            ,"Dizzee Rascal"
-            ,"DJ Khaled"
-            ,"DJ Snake"
-            ,"DMX"
-            ,"DNCE"
-            ,"Doda"
-            ,"Dolly Parton"
-            ,"Dolores O'Riordan"
-            ,"Don Omar"
-            ,"Donna Lewis"
-            ,"Double You"
-            ,"The-Dream"
-            ,"Dreams Come True"
-            ,"DragonForce"
-            ,"Dragonette"
-            ,"Drake"
-            ,"Drake Bell"
-            ,"The Drums"
-            ,"Dr. Dre"
-            ,"Duck Sauce"
-            ,"Duffy"
-            ,"Duke Dumont"
-            ,"Dulce Maria"
-            ,"Duran Duran"
-            ,"DVDA"
-            ,"Dwayne Johnson"
-            ,"Dzeko"
-            ,"The Eagles"
-            ,"Eason Chan"
-            ,"Easton Corbin"
-            ,"Edoardo Bennato"
-            ,"Eels"
-            ,"Eiffel 65"
-            ,"Elhaida Dani"
-            ,"Elena Paparizou"
-            ,"Ellie Goulding"
-            ,"Elton John"
-            ,"Emily Blunt"
-            ,"Eminem"
-            ,"Emma Bunton"
-            ,"Emmelie de Forest"
-            ,"Enigma"
-            ,"Enrique Iglesias"
-            ,"Enya"
-            ,"Emma's Imagination"
-            ,"Empire of the Sun"
-            ,"Enter Shikari"
-            ,"Equinox"
-            ,"Eric Papilaya"
-            ,"Eric Whitacre"
-            ,"Eriko Tamura"
-            ,"Eros Ramazzotti"
-            ,"Erykah Badu"
-            ,"Escape the Fate"
-            ,"Estelle"
-            ,"Eugenio Bennato"
-            ,"Evanescence"
-            ,"Exodus"
-            ,"Fabolous"
-            ,"Fabri Fibra"
-            ,"Faithless"
-            ,"Fall Out Boy"
-            ,"FanFan"
-            ,"Fang Wu"
-            ,"Far East Movement"
-            ,"Faryl Smith"
-            ,"Fazura"
-            ,"Felli Fel"
-            ,"Fergie"
-            ,"Fever Ray"
-            ,"The Fevers"
-            ,"Finger Eleven"
-            ,"Fish Leong"
-            ,"Fisherman's Friends"
-            ,"Flaw"
-            ,"Flipsyde"
-            ,"Flo Rida"
-            ,"Florence and the Machine"
-            ,"Florence Welch"
-            ,"Forever the Sickest Kids"
-            ,"Franco Battiato"
-            ,"Frankie Goes to Hollywood"
-            ,"French Montana"
-            ,"Fresno"
-            ,"Gal Gadot"
-            ,"Game"
-            ,"Gary Allan"
-            ,"George Benson"
-            ,"George Lam"
-            ,"George Michael"
-            ,"George Harrison"
-            ,"George Strait"
-            ,"Ghostface Killah"
-            ,"Gianna Nannini"
-            ,"Gin Lee"
-            ,"Giorgio Moroder"
-            ,"Girlicious"
-            ,"Girls' Generation "
-            ,"Glasses Malone"
-            ,"Gloria Jessica"
-            ,"Gloria Trevi"
-            ,"Go Back to the Zoo"
-            ,"Godsmack"
-            ,"The Go-Go's"
-            ,"Gorillaz"
-            ,"Gotye"
-            ,"Great White"
-            ,"Guns N' Roses"
-            ,"Gwen Stefani"
-            ,"Hacken Lee"
-            ,"Haddaway"
-            ,"Hailee Steinfeld"
-            ,"Halsey"
-            ,"Hedley"
-            ,"Helena Paparizou"
-            ,"Helene Fischer"
-            ,"Hellogoodbye"
-            ,"Hevo 84"
-            ,"Hide"
-            ,"HIM"
-            ,"Hinder"
-            ,"Hins Cheung"
-            ,"Holly Williams"
-            ,"Mr Hudson"
-            ,"Hoobastank"
-            ,"Hollywood Monsters "
-            ,"Hollywood Undead"
-            ,"Hot Rod"
-            ,"Hot Chelle Rae"
-            ,"Hozier"
-            ,"Hyper Crush"
-            ,"G.NA "
-            ,"I Blame Coco"
-            ,"I Prevail"
-            ,"Il Volo"
-            ,"Ice Nine Kills"
-            ,"Ida Maria"
-            ,"Idina Menzel"
-            ,"Iggy Azalea"
-            ,"Ilya"
-            ,"Imagine Dragons"
-            ,"India Arie"
-            ,"In Dread Response"
-            ,"Inna"
-            ,"Ivete Sangalo"
-            ,"Incubus"
-            ,"Infected Mushroom"
-            ,"Inner Circle"
-            ,"Infinite "
-            ,"Irene Cara"
-            ,"Iron Maiden"
-            ,"Ironik"
-            ,"Isaac Hayes"
-            ,"Israel Kamakawiwoʻole"
-            ,"Institute"
-            ,"IU "
-            ,"Jacky Cheung"
-            ,"Jack Jersey"
-            ,"Jack Johnson"
-            ,"The Jackson 5"
-            ,"Jacob Collier"
-            ,"Jada"
-            ,"Jadakiss"
-            ,"Jadyn Maria"
-            ,"Jae Millz"
-            ,"James Blunt"
-            ,"James Morrison"
-            ,"Jamie Principle"
-            ,"Jan Hammer"
-            ,"Jane Birkin"
-            ,"Jason Dy"
-            ,"Jay Sean"
-            ,"Jay Hardway"
-            ,"Jay-Z"
-            ,"Ja Rule"
-            ,"JD McCrary"
-            ,"Jean-Michel Jarre"
-            ,"Jedward"
-            ,"Jemaine Clement"
-            ,"Jeremih"
-            ,"Jessie J"
-            ,"Jessie James"
-            ,"Jessica Sanchez"
-            ,"Jennifer Lopez"
-            ,"Jessica Mauboy"
-            ,"Jessica Simpson"
-            ,"Jin Au-Yeung"
-            ,"Joana Zimmer"
-            ,"Joe Jonas"
-            ,"Joe Walsh"
-            ,"John Lennon"
-            ,"John Mayer"
-            ,"Johnny Cash"
-            ,"Johnta Austin"
-            ,"Jonas Blue"
-            ,"Josh Gracin"
-            ,"Joe Satriani"
-            ,"Jordan Chan"
-            ,"Josh Gad"
-            ,"Josh Turner"
-            ,"Josh Dun"
-            ,"Jovanotti"
-            ,"Juanes"
-            ,"Juan Karlos Labajo"
-            ,"Juelz Santana"
-            ,"Julia Michaels"
-            ,"Justin Bieber"
-            ,"Jacquees"
-            ,"J-Xtreme"
-            ,"Kaitlyn Maher"
-            ,"Kanye West"
-            ,"Kardinal Offishall"
-            ,"KARA "
-            ,"Karen Mok"
-            ,"Karol Sevilla"
-            ,"Karkadan"
-            ,"Katharine McPhee"
-            ,"Kat DeLuna"
-            ,"Kate Earl"
-            ,"Keith David"
-            ,"Keith Urban"
-            ,"Kelis"
-            ,"Kelly Chen"
-            ,"Kendrick Lamar"
-            ,"Keri Hilson"
-            ,"Keshia Chanté"
-            ,"Kevin Rudolf"
-            ,"Keyshia Cole"
-            ,"Kid Abelha"
-            ,"Kid Cudi"
-            ,"Kidz Bop Kids"
-            ,"The Killers"
-            ,"Kim Hyun Joong"
-            ,"Kim Wilde"
-            ,"Kiss"
-            ,"K.I.Z"
-            ,"The Knife"
-            ,"Kris Wu"
-            ,"Krista Siegfrids"
-            ,"Kristen Bell"
-            ,"Kuana Torres Kahele"
-            ,"Kyu Sakamoto"
-            ,"Lady Antebellum"
-            ,"Lady Gaga"
-            ,"Lana Del Rey"
-            ,"Lifer"
-            ,"Lionel Richie"
-            ,"Lobão"
-            ,"Logic"
-            ,"Lorde"
-            ,"La Roux"
-            ,"Ladyhawke"
-            ,"Lawson"
-            ,"Lee Ann Womack"
-            ,"Legião Urbana"
-            ,"Leslie Cheung"
-            ,"Lights"
-            ,"Lil Ru"
-            ,"Lil Scrappy"
-            ,"Lil Twist"
-            ,"Lil' Kim"
-            ,"Lil Mosey"
-            ,"Lil Wayne"
-            ,"Lil Yachty"
-            ,"Lin-Manuel Miranda"
-            ,"LMFAO"
-            ,"The Lonely Island"
-            ,"Lucenzo"
-            ,"Ludo"
-            ,"Ludacris"
-            ,"Luke Bryan"
-            ,"Lulu Santos"
-            ,"The Lumineers"
-            ,"LUNA SEA"
-            ,"Limp Bizkit"
-            ,"Lim Hyung Joo"
-            ,"Lena Meyer-Landrut"
-            ,"Luísa Sonza"
-            ,"Lyca Gairanod"
-            ,"Mack 10"
-            ,"Mack Maine"
-            ,"Madonna"
-            ,"The Maine"
-            ,"Mamonas Assassinas"
-            ,"Mannie Fresh"
-            ,"Manu Gavassi"
-            ,"Mao Denda"
-            ,"Marcelo D2"
-            ,"Marky"
-            ,"Mark Oliver Everett"
-            ,"Mark Salling"
-            ,"Martin Garrix"
-            ,"Martin Solveig"
-            ,"Mallary Hope"
-            ,"Maria Isabel"
-            ,"Maria Dwi Permata Simorangkir"
-            ,"Mariah Carey"
-            ,"Mariana Elisabetsky"
-            ,"Marilyn Manson"
-            ,"Maroon 5"
-            ,"Masaharu Fukuyama"
-            ,"Momoland "
-            ,"Marracash"
-            ,"Marta Sánchez"
-            ,"Massacration"
-            ,"Maureen McGovern"
-            ,"MaxBoys"
-            ,"Kevin McHale"
-            ,"Meat Loaf"
-            ,"Megumi Hayashibara"
-            ,"Mel Fronckowiak"
-            ,"Melanie Fiona"
-            ,"Melissa Etheridge"
-            ,"Melody Gardot"
-            ,"Method Man"
-            ,"Megadeth"
-            ,"Metallica"
-            ,"Metal Church"
-            ,"MIA"
-            ,"Michael Jackson"
-            ,"Michael Sarver"
-            ,"Migos"
-            ,"Miguel"
-            ,"Mihimaru GT"
-            ,"Mika"
-            ,"Mike Posner"
-            ,"Miki Imai"
-            ,"Miley Cyrus"
-            ,"Milton Nascimento"
-            ,"Miyavi"
-            ,"Miss A"
-            ,"Mohamed Mounir"
-            ,"Momoiro Clover"
-            ,"Mr Hudson"
-            ,"Mumford & Sons"
-            ,"Muse"
-            ,"Mushroomhead"
-            ,"Ms. Triniti"
-            ,"Morteza Pashaei"
-            ,"Mýa"
-            ,"Mylène Farmer"
-            ,"Nadia Nakai "
-            ,"The Naked and Famous"
-            ,"Nami Tamaki"
-            ,"Namie Amuro"
-            ,"Nas"
-            ,"Nasty C "
-            ,"Natalia Lafourcade"
-            ,"Nav"
-            ,"Natalia Kills"
-            ,"N-Dubz"
-            ,"Ne-Yo"
-            ,"Nelly"
-            ,"Nelly Furtado"
-            ,"Neon Trees"
-            ,"N.E.R.D"
-            ,"Nicole Scherzinger"
-            ,"Nick Cave"
-            ,"Nickelback "
-            ,"Nicki Minaj"
-            ,"Nicola Roberts"
-            ,"Nicole Scherzinger"
-            ,"Nightwish"
-            ,"Nine Inch Nails"
-            ,"Noize MC"
-            ,"Noizy"
-            ,"Nolwenn Leroy"
-            ,"Nimo [de]"
-            ,"NOFX"
-            ,"The Notorious B.I.G."
-            ,"NX Zero"
-            ,"O–P"
-            ,"Of Monsters and Men"
-            ,"Oh Wonder"
-            ,"Oingo Boingo"
-            ,"OneRepublic"
-            ,"Oomph!"
-            ,"Orianthi"
-            ,"Emily Osment"
-            ,"The Offspring"
-            ,"The Outfield"
-            ,"Owl City"
-            ,"O-Town"
-            ,"P.O.D."
-            ,"Papa Roach"
-            ,"The Parlotones"
-            ,"Patrick Juvet"
-            ,"Paul McCartney"
-            ,"Paul Engemann"
-            ,"Paula Fernandes"
-            ,"Paulina Rubio"
-            ,"Pedro Abrunhosa"
-            ,"Pet Shop Boys"
-            ,"Peter Bjorn and John"
-            ,"Katy Perry"
-            ,"Pierce the Veil"
-            ,"Pixie Lott"
-            ,"Perfume"
-            ,"Phantogram"
-            ,"Phil Collins"
-            ,"Pink Floyd"
-            ,"Play"
-            ,"Playaz Circle"
-            ,"The Police"
-            ,"Polina Gagarina"
-            ,"Post Malone"
-            ,"Pussycat Dolls"
-            ,"Parachute"
-            ,"The Presets"
-            ,"Prima J"
-            ,"Prudence Liew"
-            ,"PSY"
-            ,"Queen"
-            ,"Queens of the Stone Age"
-            ,"Queensrÿche"
-            ,"R5"
-            ,"Ra"
-            ,"Rabbi Shergill"
-            ,"Radwimps"
-            ,"Rae Sremmurd"
-            ,"Rainbow "
-            ,"Rainer + Grimm"
-            ,"Rammstein"
-            ,"The Ramones"
-            ,"Randy Newman"
-            ,"Raul Seixas"
-            ,"Raven-Symoné"
-            ,"Razorlight"
-            ,"Reba McEntire"
-            ,"Rebeldes"
-            ,"Redman"
-            ,"Red Hot Chili Peppers"
-            ,"Red Velvet "
-            ,"Renato Russo"
-            ,"Rev Theory"
-            ,"Rick Astley"
-            ,"Rick Ross"
-            ,"Rich Boy"
-            ,"Rihanna"
-            ,"Ringo Sheena"
-            ,"Ringo Starr"
-            ,"Rise Against"
-            ,"Rob Paulsen"
-            ,"Rob Zombie"
-            ,"Robbie Williams"
-            ,"Roberto Garcia"
-            ,"Robyn"
-            ,"Rod Stewart"
-            ,"Roi Méndez"
-            ,"Rooney"
-            ,"Ross Lynch"
-            ,"RPM"
-            ,"Rubber Soul"
-            ,"Ryan Tedder"
-            ,"Serena Ryder"
-            ,"Sakis Rouvas"
-            ,"Sakura Gakuin"
-            ,"Samsons"
-            ,"Sam Smith"
-            ,"Sandy"
-            ,"Sandy & Júnior"
-            ,"Sandy Lam"
-            ,"Sara Paula Gómez Arias"
-            ,"Sarah Silverman"
-            ,"The Saturdays"
-            ,"Satyricon"
-            ,"Saulo Vasconcelos"
-            ,"Saving Grace"
-            ,"Scooter"
-            ,"Scorpions"
-            ,"Sean Garrett"
-            ,"Sean Paul"
-            ,"Seeb"
-            ,"Seether"
-            ,"Serge Gainsbourg"
-            ,"Sergio Godinho"
-            ,"Serebro"
-            ,"Seth MacFarlane"
-            ,"Shaggy"
-            ,"Shakira"
-            ,"Shane Filan"
-            ,"Shania Twain"
-            ,"Shareefa"
-            ,"Shawn Mendes"
-            ,"SHINee "
-            ,"Shontelle"
-            ,"Sia"
-            ,"Sigma"
-            ,"Sigrid"
-            ,"Silentó"
-            ,"Simone & Simaria"
-            ,"Simple Minds"
-            ,"Simple Plan"
-            ,"Siti Nurhaliza"
-            ,"Seiko Matsuda"
-            ,"Selena Gomez"
-            ,"Smile.dk"
-            ,"Slash"
-            ,"Slayer"
-            ,"Smash Mouth"
-            ,"Snow Patrol"
-            ,"Sonata Arctica"
-            ,"Soraya Arnelas"
-            ,"Soulja Boy"
-            ,"Stevie Wonder"
-            ,"Sunidhi Chauhan"
-            ,"Sugarland"
-            ,"Space Cowboy"
-            ,"Spice Girls"
-            ,"Spose"
-            ,"Stefanie Sun"
-            ,"Steve Winwood"
-            ,"Sting"
-            ,"Street Drum Corps"
-            ,"Steel Panther"
-            ,"Stromae"
-            ,"Sum 41"
-            ,"Super Junior "
-            ,"Super Monkey's"
-            ,"Supertramp"
-            ,"Sully Erna"
-            ,"Svoy"
-            ,"Swae Lee"
-            ,"SZA"
-            ,"T Lopez"
-            ,"T-ara "
-            ,"The Stunners"
-            ,"Tessanne Chin"
-            ,"Taio Cruz"
-            ,"Takako Matsu"
-            ,"Take That"
-            ,"Tamar Braxton"
-            ,"Tami Chynn"
-            ,"Tamta"
-            ,"Tarja"
-            ,"Taylor Swift"
-            ,"Tears for Fears"
-            ,"Teresa Teng"
-            ,"Teyana Taylor"
-            ,"Thirty Seconds to Mars"
-            ,"Tiago Abravanel"
-            ,"Tiago Bettencourt"
-            ,"Tiësto"
-            ,"Tihuana"
-            ,"Tim McGraw"
-            ,"Tina Parol"
-            ,"Tinchy Stryder"
-            ,"Tiziano Ferro"
-            ,"Tono Rosario"
-            ,"Toni Braxton"
-            ,"Tokio Hotel"
-            ,"Tom Tom Club"
-            ,"Tony Anselmo"
-            ,"Toquinho"
-            ,"Tori Kelly"
-            ,"Tove Lo"
-            ,"Trippie Redd"
-            ,"Troye Sivan"
-            ,"t.A.T.u."
-            ,"The Tragically Hip"
-            ,"Tupac Shakur"
-            ,"Twelve Girls Band"
-            ,"Tyga"
-            ,"TYP"
-            ,"Tyson Ritter"
-            ,"Tyler Joseph"
-            ,"U2"
-            ,"Ultrabeat"
-            ,"Vacca"
-            ,"The Vamps"
-            ,"Vangelis"
-            ,"Van Halen"
-            ,"Vanessa Carlton"
-            ,"The Veer Union"
-            ,"Venom"
-            ,"Vince Gill"
-            ,"Volbeat"
-            ,"Wale"
-            ,"Cyndi Wang"
-            ,"The Wanted"
-            ,"Wanting Qu"
-            ,"WaT"
-            ,"The Weeknd"
-            ,"Weezer"
-            ,"Westlife"
-            ,"The Who"
-            ,"Wisin & Yandel"
-            ,"Wolfmother"
-            ,"Wyclef Jean"
-            ,"Willy Northpole"
-            ,"Will Pan"
-            ,"will.i.am"
-            ,"Within Temptation"
-            ,"Wiz Khalifa"
-            ,"Wonder Girls "
-            ,"Wu Bai"
-            ,"Xonia"
-            ,"Vanness Wu"
-            ,"Xuxa"
-            ,"Yasuko Matsuyuki"
-            ,"Yazz"
-            ,"Yeah Yeah Yeahs"
-            ,"Years & Years"
-            ,"Yelle"
-            ,"Yellow Magic Orchestra"
-            ,"Yngwie Malmsteen"
-            ,"Yohio"
-            ,"Yoko Ono"
-            ,"Young Jeezy"
-            ,"Your Favorite Martian"
-            ,"Yū Hayami"
-            ,"Yumi Matsutoya"
-            ,"Yung L.A."
-            ,"Yves Larock"
-            ,"Zana Messia"
-            ,"Zascha Moktan"
-            ,"Zélia Duncan"
-            ,"Zendaya"
-            ,"Zucchero"   };
+    public static String[] names = {"10 cc",
+            "10 Years",
+            "2 Chainz",
+            "3 Doors Down",
+            "4minute",
+            "4 Strings",
+            "The 1975",
+            "5 Seconds of Summer",
+            "50 Cent",
+            "6ix9ine",
+            "Aaliyah",
+            "ABBA",
+            "Abandon All Ships",
+            "The All-American Rejects",
+            "The Airborne Toxic Event",
+            "Ace Hood",
+            "Ace of Base",
+            "Adassa",
+            "Admiral T",
+            "Afrojack",
+            "AGA",
+            "Airbourne",
+            "Aitana",
+            "AJR",
+            "Akon",
+            "Alan Tam",
+            "Alesso",
+            "Alexander Rybak",
+            "Alison Krauss",
+            "Alphabeat",
+            "All That Remains",
+            "All Time Low",
+            "Allstar Weekend",
+            "Aloe Blacc",
+            "Alter Bridge",
+            "Amaranthe",
+            "Angels & Airwaves",
+            "Anthrax",
+            "Alice Nine",
+            "Alphaville",
+            "AFI",
+            "After Midnight Project",
+            "Alessia Cara",
+            "Amy Holland",
+            "Amy Winehouse",
+            "Ana Guerra",
+            "Ana Moura",
+            "Anastacia",
+            "Anberlin",
+            "Andrea Bocelli",
+            "Anggun",
+            "Any Gabrielly",
+            "A-Mei",
+            "Apink",
+            "Apocalyptica",
+            "Armin Van Buuren",
+            "Arnaldo Antunes",
+            "Ariana Grande",
+            "A R Rahman",
+            "Aqua",
+            "The Aquabats",
+            "As It Is",
+            "Ashanti",
+            "Ashlee Simpson",
+            "Asher Roth",
+            "Ashes Divide",
+            "Ashton Shepherd",
+            "Asia",
+            "Astrid S",
+            "Asuca Hayashi",
+            "Atreyu",
+            "Audioslave",
+            "August Burns Red",
+            "Auliʻi Cravalho",
+            "Aura Dione",
+            "Avenged Sevenfold",
+            "Avicii",
+            "Aya Hirano",
+            "Ayọ",
+            "Babyface",
+            "BG",
+            "Baba Saad",
+            "Base Ball Bear",
+            "Bastille",
+            "Barei",
+            "BEAST",
+            "Bee Gees",
+            "The Beatles",
+            "Backstreet Boys",
+            "Beni Arashiro",
+            "Benny Benassi",
+            "Billy Blue",
+            "Bishop Lamont",
+            "Big Bang ",
+            "Big Sean",
+            "Big Time Rush",
+            "Biquini Cavadão",
+            "Birdman",
+            "Björk",
+            "Blue",
+            "Buckcherry",
+            "The Black Eyed Peas",
+            "Blackpink ",
+            "Black Tide",
+            "Black Veil Brides",
+            "Blaxy Girls",
+            "Blue October",
+            "Blood Raw",
+            "Bloodhound Gang",
+            "Bloom 06",
+            "Bob Marley",
+            "Bob Sinclar",
+            "Bobby McFerrin",
+            "Bohemia",
+            "Bombay Rockers",
+            "Bon Jovi",
+            "Bond",
+            "Bone Thugs-n-Harmony",
+            "Boston",
+            "The Bravery",
+            "Bradley Cooper",
+            "Brand New",
+            "Brandy",
+            "Breaking Benjamin",
+            "Bridgit Mendler",
+            "Bruna Guerin",
+            "Bruno Campos",
+            "Bruno & Marrone",
+            "Bryan Adams",
+            "Brynn Cartelli",
+            "Busta Rhymes",
+            "Butthole Surfers",
+            "BTS ",
+            "Boyzone",
+            "Boys Republic ",
+            "Bow Wow",
+            "Bullet for My Valentine",
+            "Bun B",
+            "Buraka Som Sistema",
+            "Bushido",
+            "Camille",
+            "Caparezza",
+            "Capital Cities",
+            "Carlinhos Brown",
+            "Carlos Alazraqui",
+            "Carlos do Carmo",
+            "Carly Rae Jepsen",
+            "The Carpenters",
+            "Carrie Underwood",
+            "The Cranberries",
+            "The Crystal Method",
+            "The Cure",
+            "Cascada",
+            "Cassadee Pope",
+            "Cássia Eller",
+            "Cassie",
+            "Cash Cash",
+            "Cassper Nyovest",
+            "Cazuza",
+            "Cedric Gervais",
+            "Cepeda",
+            "Cinema Bizarre",
+            "City Boy",
+            "Craig David",
+            "Chamillionaire",
+            "Charlee",
+            "Charles Aznavour",
+            "Charles Hamilton",
+            "Chay Suede",
+            "The Chemical Brothers",
+            "Chenoa",
+            "Cher",
+            "Cher Lloyd",
+            "Cherish",
+            "Cheryl",
+            "Chester French",
+            "Chilla Kiana",
+            "Children Collide",
+            "Chicane",
+            "Children of Bodom",
+            "Chris Cornell",
+            "Chris Daughtry",
+            "Chitãozinho & Xororó",
+            "Cimorelli",
+            "Claude Kelly",
+            "Coal Chamber",
+            "Christina Milian",
+            "Christina Grimmie",
+            "Chrisette Michelle",
+            "Chumbawamba",
+            "Clementino",
+            "Clouds",
+            "Club Dogo",
+            "Colbie Caillat",
+            "Colby O'Donis",
+            "Coldplay",
+            "Common",
+            "Corson",
+            "Cory Gunz",
+            "Counting Crows",
+            "Clique Girlz",
+            "Charles Hamilton",
+            "Crashdïet",
+            "Ciara",
+            "Cine",
+            "CPM 22",
+            "Crazy Frog",
+            "Crazy Town",
+            "Creamy",
+            "Crystal Castles",
+            "Crystal Kay",
+            "Curren$y",
+            "Cut Copy",
+            "Cyndi Lauper",
+            "DeLon",
+            "D12",
+            "D. Brown",
+            "Da Mouth",
+            "Daddy Yankee",
+            "Daiyan Trisha",
+            "Dan Black",
+            "Dan Reynolds",
+            "Daniel Merriweather",
+            "Danzig",
+            "Dark Tranquility",
+            "Darren Espanto",
+            "David Banner",
+            "David Bisbal",
+            "David Bustamante",
+            "David Fonseca",
+            "David Gray",
+            "David Guetta",
+            "David Nail",
+            "Darude",
+            "Days Difference",
+            "Dead by April",
+            "Debbie Harry",
+            "Dave Matthews Band",
+            "Deadmau5",
+            "Death ",
+            "Dean",
+            "Deep Purple",
+            "Demi Lovato",
+            "Denez Prigent",
+            "Depeche Mode",
+            "Desiigner",
+            "Diamond Platnumz",
+            "Dido",
+            "Die Antwoord",
+            "Dierks Bentley",
+            "Dire Straits",
+            "Dirty Vegas",
+            "Dima Bilan",
+            "Divine Brown",
+            "Dizzee Rascal",
+            "DJ Khaled",
+            "DJ Snake",
+            "DMX",
+            "DNCE",
+            "Doda",
+            "Dolly Parton",
+            "Dolores O'Riordan",
+            "Don Omar",
+            "Donna Lewis",
+            "Double You",
+            "The-Dream",
+            "Dreams Come True",
+            "DragonForce",
+            "Dragonette",
+            "Drake",
+            "Drake Bell",
+            "The Drums",
+            "Dr. Dre",
+            "Duck Sauce",
+            "Duffy",
+            "Duke Dumont",
+            "Dulce Maria",
+            "Duran Duran",
+            "DVDA",
+            "Dwayne Johnson",
+            "Dzeko",
+            "The Eagles",
+            "Eason Chan",
+            "Easton Corbin",
+            "Edoardo Bennato",
+            "Eels",
+            "Eiffel 65",
+            "Elhaida Dani",
+            "Elena Paparizou",
+            "Ellie Goulding",
+            "Elton John",
+            "Emily Blunt",
+            "Eminem",
+            "Emma Bunton",
+            "Emmelie de Forest",
+            "Enigma",
+            "Enrique Iglesias",
+            "Enya",
+            "Emma's Imagination",
+            "Empire of the Sun",
+            "Enter Shikari",
+            "Equinox",
+            "Eric Papilaya",
+            "Eric Whitacre",
+            "Eriko Tamura",
+            "Eros Ramazzotti",
+            "Erykah Badu",
+            "Escape the Fate",
+            "Estelle",
+            "Eugenio Bennato",
+            "Evanescence",
+            "Exodus",
+            "Fabolous",
+            "Fabri Fibra",
+            "Faithless",
+            "Fall Out Boy",
+            "FanFan",
+            "Fang Wu",
+            "Far East Movement",
+            "Faryl Smith",
+            "Fazura",
+            "Felli Fel",
+            "Fergie",
+            "Fever Ray",
+            "The Fevers",
+            "Finger Eleven",
+            "Fish Leong",
+            "Fisherman's Friends",
+            "Flaw",
+            "Flipsyde",
+            "Flo Rida",
+            "Florence Welch",
+            "Forever the Sickest Kids",
+            "Franco Battiato",
+            "Frankie Goes to Hollywood",
+            "French Montana",
+            "Fresno",
+            "Gal Gadot",
+            "Game",
+            "Gary Allan",
+            "George Benson",
+            "George Lam",
+            "George Michael",
+            "George Harrison",
+            "George Strait",
+            "Ghostface Killah",
+            "Gianna Nannini",
+            "Gin Lee",
+            "Giorgio Moroder",
+            "Girlicious",
+            "Girls' Generation ",
+            "Glasses Malone",
+            "Gloria Jessica",
+            "Gloria Trevi",
+            "Go Back to the Zoo",
+            "Godsmack",
+            "The Go-Go's",
+            "Gorillaz",
+            "Gotye",
+            "Great White",
+            "Guns N' Roses",
+            "Gwen Stefani",
+            "Hacken Lee",
+            "Haddaway",
+            "Hailee Steinfeld",
+            "Halsey",
+            "Hedley",
+            "Helena Paparizou",
+            "Helene Fischer",
+            "Hellogoodbye",
+            "Hevo 84",
+            "Hide",
+            "HIM",
+            "Hinder",
+            "Hins Cheung",
+            "Holly Williams",
+            "Mr Hudson",
+            "Hoobastank",
+            "Hollywood Monsters ",
+            "Hollywood Undead",
+            "Hot Rod",
+            "Hot Chelle Rae",
+            "Hozier",
+            "Hyper Crush",
+            "G.NA ",
+            "I Blame Coco",
+            "I Prevail",
+            "Il Volo",
+            "Ice Nine Kills",
+            "Ida Maria",
+            "Idina Menzel",
+            "Iggy Azalea",
+            "Ilya",
+            "Imagine Dragons",
+            "India Arie",
+            "In Dread Response",
+            "Inna",
+            "Ivete Sangalo",
+            "Incubus",
+            "Infected Mushroom",
+            "Inner Circle",
+            "Infinite ",
+            "Irene Cara",
+            "Iron Maiden",
+            "Ironik",
+            "Isaac Hayes",
+            "Israel Kamakawiwoʻole",
+            "Institute",
+            "IU ",
+            "Jacky Cheung",
+            "Jack Jersey",
+            "Jack Johnson",
+            "The Jackson 5",
+            "Jacob Collier",
+            "Jada",
+            "Jadakiss",
+            "Jadyn Maria",
+            "Jae Millz",
+            "James Blunt",
+            "James Morrison",
+            "Jamie Principle",
+            "Jan Hammer",
+            "Jane Birkin",
+            "Jason Dy",
+            "Jay Sean",
+            "Jay Hardway",
+            "Jay-Z",
+            "Ja Rule",
+            "JD McCrary",
+            "Jean-Michel Jarre",
+            "Jedward",
+            "Jemaine Clement",
+            "Jeremih",
+            "Jessie J",
+            "Jessie James",
+            "Jessica Sanchez",
+            "Jennifer Lopez",
+            "Jessica Mauboy",
+            "Jessica Simpson",
+            "Jin Au-Yeung",
+            "Joana Zimmer",
+            "Joe Jonas",
+            "Joe Walsh",
+            "John Lennon",
+            "John Mayer",
+            "Johnny Cash",
+            "Johnta Austin",
+            "Jonas Blue",
+            "Josh Gracin",
+            "Joe Satriani",
+            "Jordan Chan",
+            "Josh Gad",
+            "Josh Turner",
+            "Jovanotti",
+            "Juanes",
+            "Juan Karlos Labajo",
+            "Juelz Santana",
+            "Julia Michaels",
+            "Justin Bieber",
+            "Jacquees",
+            "Kaitlyn Maher",
+            "Kanye West",
+            "Kardinal Offishall",
+            "KARA ",
+            "Karen Mok",
+            "Karol Sevilla",
+            "Karkadan",
+            "Katharine McPhee",
+            "Kat DeLuna",
+            "Kate Earl",
+            "Keith David",
+            "Keith Urban",
+            "Kelis",
+            "Kelly Chen",
+            "Kendrick Lamar",
+            "Keri Hilson",
+            "Keshia Chanté",
+            "Kevin Rudolf",
+            "Keyshia Cole",
+            "Kid Abelha",
+            "Kid Cudi",
+            "Kidz Bop Kids",
+            "The Killers",
+            "Kim Hyun Joong",
+            "Kim Wilde",
+            "Kiss",
+            "K.I.Z",
+            "The Knife",
+            "Kris Wu",
+            "Krista Siegfrids",
+            "Kristen Bell",
+            "Kuana Torres Kahele",
+            "Kyu Sakamoto",
+            "Lady Antebellum",
+            "Lady Gaga",
+            "Lana Del Rey",
+            "Lifer",
+            "Lionel Richie",
+            "Lobão",
+            "Logic",
+            "Lorde",
+            "La Roux",
+            "Ladyhawke",
+            "Lawson",
+            "Lee Ann Womack",
+            "Legião Urbana",
+            "Leslie Cheung",
+            "Lights",
+            "Lil Ru",
+            "Lil Scrappy",
+            "Lil Twist",
+            "Lil' Kim",
+            "Lil Mosey",
+            "Lil Wayne",
+            "Lil Yachty",
+            "Lin-Manuel Miranda",
+            "LMFAO",
+            "The Lonely Island",
+            "Lucenzo",
+            "Ludo",
+            "Ludacris",
+            "Luke Bryan",
+            "Lulu Santos",
+            "The Lumineers",
+            "LUNA SEA",
+            "Limp Bizkit",
+            "Lim Hyung Joo",
+            "Lena Meyer-Landrut",
+            "Luísa Sonza",
+            "Lyca Gairanod",
+            "Mack 10",
+            "Mack Maine",
+            "Madonna",
+            "The Maine",
+            "Mamonas Assassinas",
+            "Mannie Fresh",
+            "Manu Gavassi",
+            "Mao Denda",
+            "Marcelo D2",
+            "Marky",
+            "Mark Oliver Everett",
+            "Mark Salling",
+            "Martin Garrix",
+            "Martin Solveig",
+            "Mallary Hope",
+            "Maria Isabel",
+            "Mariah Carey",
+            "Mariana Elisabetsky",
+            "Marilyn Manson",
+            "Maroon 5",
+            "Masaharu Fukuyama",
+            "Momoland ",
+            "Marracash",
+            "Marta Sánchez",
+            "Massacration",
+            "Maureen McGovern",
+            "Kevin McHale",
+            "Meat Loaf",
+            "Megumi Hayashibara",
+            "Melanie Fiona",
+            "Melissa Etheridge",
+            "Melody Gardot",
+            "Method Man",
+            "Megadeth",
+            "Metallica",
+            "Metal Church",
+            "MIA",
+            "Michael Jackson",
+            "Michael Sarver",
+            "Migos",
+            "Miguel",
+            "Mihimaru GT",
+            "Mika",
+            "Mike Posner",
+            "Miki Imai",
+            "Miley Cyrus",
+            "Milton Nascimento",
+            "Miyavi",
+            "Miss A",
+            "Mohamed Mounir",
+            "Momoiro Clover",
+            "Mr Hudson",
+            "Mumford & Sons",
+            "Muse",
+            "Mushroomhead",
+            "Ms. Triniti",
+            "Morteza Pashaei",
+            "Mýa",
+            "Mylène Farmer",
+            "Nadia Nakai ",
+            "The Naked and Famous",
+            "Nami Tamaki",
+            "Namie Amuro",
+            "Nas",
+            "Nasty C ",
+            "Natalia Lafourcade",
+            "Nav",
+            "Natalia Kills",
+            "N-Dubz",
+            "Ne-Yo",
+            "Nelly",
+            "Nelly Furtado",
+            "Neon Trees",
+            "N.E.R.D",
+            "Nicole Scherzinger",
+            "Nick Cave",
+            "Nickelback ",
+            "Nicki Minaj",
+            "Nicola Roberts",
+            "Nicole Scherzinger",
+            "Nightwish",
+            "Nine Inch Nails",
+            "Noize MC",
+            "Noizy",
+            "Nolwenn Leroy",
+            "Nimo [de]",
+            "NOFX",
+            "The Notorious B.I.G.",
+            "NX Zero",
+            "O–P",
+            "Of Monsters and Men",
+            "Oh Wonder",
+            "Oingo Boingo",
+            "OneRepublic",
+            "Oomph!",
+            "Orianthi",
+            "Emily Osment",
+            "The Offspring",
+            "The Outfield",
+            "Owl City",
+            "O-Town",
+            "P.O.D.",
+            "Papa Roach",
+            "The Parlotones",
+            "Patrick Juvet",
+            "Paul McCartney",
+            "Paul Engemann",
+            "Paula Fernandes",
+            "Paulina Rubio",
+            "Pedro Abrunhosa",
+            "Pet Shop Boys",
+            "Peter Bjorn and John",
+            "Katy Perry",
+            "Pierce the Veil",
+            "Pixie Lott",
+            "Perfume",
+            "Phantogram",
+            "Phil Collins",
+            "Pink Floyd",
+            "Play",
+            "Playaz Circle",
+            "The Police",
+            "Polina Gagarina",
+            "Post Malone",
+            "Pussycat Dolls",
+            "Parachute",
+            "The Presets",
+            "Prima J",
+            "Prudence Liew",
+            "PSY",
+            "Queen",
+            "Queens of the Stone Age",
+            "Queensrÿche",
+            "R5",
+            "Ra",
+            "Rabbi Shergill",
+            "Radwimps",
+            "Rae Sremmurd",
+            "Rainbow ",
+            "Rainer + Grimm",
+            "Rammstein",
+            "The Ramones",
+            "Randy Newman",
+            "Raul Seixas",
+            "Raven-Symoné",
+            "Razorlight",
+            "Reba McEntire",
+            "Rebeldes",
+            "Redman",
+            "Red Hot Chili Peppers",
+            "Red Velvet ",
+            "Renato Russo",
+            "Rev Theory",
+            "Rick Astley",
+            "Rick Ross",
+            "Rich Boy",
+            "Rihanna",
+            "Ringo Sheena",
+            "Ringo Starr",
+            "Rise Against",
+            "Rob Paulsen",
+            "Rob Zombie",
+            "Robbie Williams",
+            "Roberto Garcia",
+            "Robyn",
+            "Rod Stewart",
+            "Roi Méndez",
+            "Rooney",
+            "Ross Lynch",
+            "RPM",
+            "Rubber Soul",
+            "Ryan Tedder",
+            "Serena Ryder",
+            "Sakis Rouvas",
+            "Sakura Gakuin",
+            "Samsons",
+            "Sam Smith",
+            "Sandy",
+            "Sandy & Júnior",
+            "Sandy Lam",
+            "Sara Paula Gómez Arias",
+            "Sarah Silverman",
+            "The Saturdays",
+            "Satyricon",
+            "Saulo Vasconcelos",
+            "Saving Grace",
+            "Scooter",
+            "Scorpions",
+            "Sean Garrett",
+            "Sean Paul",
+            "Seeb",
+            "Seether",
+            "Serge Gainsbourg",
+            "Sergio Godinho",
+            "Serebro",
+            "Seth MacFarlane",
+            "Shaggy",
+            "Shakira",
+            "Shane Filan",
+            "Shania Twain",
+            "Shareefa",
+            "Shawn Mendes",
+            "SHINee ",
+            "Shontelle",
+            "Sia",
+            "Sigma",
+            "Sigrid",
+            "Silentó",
+            "Simone & Simaria",
+            "Simple Minds",
+            "Simple Plan",
+            "Siti Nurhaliza",
+            "Seiko Matsuda",
+            "Selena Gomez",
+            "Smile.dk",
+            "Slash",
+            "Slayer",
+            "Smash Mouth",
+            "Snow Patrol",
+            "Sonata Arctica",
+            "Soraya Arnelas",
+            "Soulja Boy",
+            "Stevie Wonder",
+            "Sunidhi Chauhan",
+            "Sugarland",
+            "Space Cowboy",
+            "Spice Girls",
+            "Spose",
+            "Stefanie Sun",
+            "Steve Winwood",
+            "Sting",
+            "Street Drum Corps",
+            "Steel Panther",
+            "Stromae",
+            "Sum 41",
+            "Super Junior ",
+            "Super Monkey's",
+            "Supertramp",
+            "Sully Erna",
+            "Svoy",
+            "Swae Lee",
+            "SZA",
+            "T Lopez",
+            "T-ara ",
+            "The Stunners",
+            "Tessanne Chin",
+            "Taio Cruz",
+            "Takako Matsu",
+            "Take That",
+            "Tamar Braxton",
+            "Tami Chynn",
+            "Tamta",
+            "Tarja",
+            "Taylor Swift",
+            "Tears for Fears",
+            "Teresa Teng",
+            "Teyana Taylor",
+            "Thirty Seconds to Mars",
+            "Tiago Abravanel",
+            "Tiago Bettencourt",
+            "Tiësto",
+            "Tihuana",
+            "Tim McGraw",
+            "Tina Parol",
+            "Tinchy Stryder",
+            "Tiziano Ferro",
+            "Tono Rosario",
+            "Toni Braxton",
+            "Tokio Hotel",
+            "Tom Tom Club",
+            "Tony Anselmo",
+            "Toquinho",
+            "Tori Kelly",
+            "Tove Lo",
+            "Trippie Redd",
+            "Troye Sivan",
+            "t.A.T.u.",
+            "The Tragically Hip",
+            "Tupac Shakur",
+            "Twelve Girls Band",
+            "Tyga",
+            "TYP",
+            "Tyson Ritter",
+            "Tyler Joseph",
+            "U2",
+            "Ultrabeat",
+            "Vacca",
+            "The Vamps",
+            "Vangelis",
+            "Van Halen",
+            "Vanessa Carlton",
+            "The Veer Union",
+            "Venom",
+            "Vince Gill",
+            "Volbeat",
+            "Wale",
+            "Cyndi Wang",
+            "The Wanted",
+            "WaT",
+            "The Weeknd",
+            "Weezer",
+            "Westlife",
+            "The Who",
+            "Wisin & Yandel",
+            "Wolfmother",
+            "Wyclef Jean",
+            "Willy Northpole",
+            "Will Pan",
+            "will.i.am",
+            "Within Temptation",
+            "Wiz Khalifa",
+            "Wonder Girls ",
+            "Wu Bai",
+            "Xonia",
+            "Vanness Wu",
+            "Yasuko Matsuyuki",
+            "Yazz",
+            "Yeah Yeah Yeahs",
+            "Years & Years",
+            "Yelle",
+            "Yellow Magic Orchestra",
+            "Yngwie Malmsteen",
+            "Yohio",
+            "Yoko Ono",
+            "Young Jeezy",
+            "Your Favorite Martian",
+            "Yū Hayami",
+            "Yumi Matsutoya",
+            "Yung L.A.",
+            "Yves Larock",
+            "Zana Messia",
+            "Zascha Moktan",
+            "Zélia Duncan",
+            "Zendaya",
+            "Zucchero",};
     public static String[] artistIDs = {"f37c537b-3557-4031-bfd6-ab63ced32854",
             "b18bc9c4-6f22-4f1b-a918-e9c86a39fe7a",
             "dff0d392-4cd5-4052-9fbb-f485df3891e5",
@@ -968,7 +958,6 @@ public class NamesUtils {
             "7fa62c0b-2c74-491e-a2a1-17c3b043f326",
             "435837d0-9896-48f1-a80f-66579628ca06",
             "69a32556-f5f6-462f-848b-1849fe408393",
-            "b1792916-4b4e-4941-a72e-0bbc5d77d449",
             "b3b24a1d-78b4-40c9-98ef-19fb812b067a",
             "7808accb-6395-4b25-858c-678bbb73896b",
             "ed97c5f6-42a6-4641-9ba0-7363ce073c19",
@@ -976,7 +965,6 @@ public class NamesUtils {
             "bf0f7e29-dfe1-416c-b5c6-f9ebc19ea810",
             "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
             "2f569e60-0a1b-4fb9-95a4-3dc1525d1aad",
-            "14d78134-bb77-4c1e-8c9b-b74284abf1cc",
             "05eb7c35-eccb-48f9-a1a9-cfa450156678",
             "674bf89f-8e70-4472-929d-6b4ed6f98c88",
             "9c79224c-70cd-4367-8d90-35ca99401b75",
@@ -1020,7 +1008,6 @@ public class NamesUtils {
             "2d30a023-3738-4572-a71f-3bbaef4f05da",
             "10a9ff92-9637-4498-afea-7044b2ab0dc0",
             "2339bc21-aa92-4850-86f0-4bb9433910c8",
-            "7728b64d-8925-4a1c-b684-a88c6194a241",
             "0c1d9174-709d-43ab-bc95-733ef61abe2a",
             "5523ed49-38bc-44fa-8670-2a9c354de0b1",
             "77122242-04d2-45ca-a4aa-520848ba3c17",
@@ -1137,7 +1124,6 @@ public class NamesUtils {
             "05b75ee5-98cd-430e-b1ec-ec0f61fdabda",
             "a4dd4cc7-576d-4126-9780-75a48741234e",
             "d1353a0c-26fb-4318-a116-defde9c7c9ad",
-            "9300a3a4-c74a-46ca-93b8-4d4b4b740e8a",
             "7e07ffb5-c0f6-4891-a74d-a5e12a247785",
             "6bd7faa9-601f-44db-a2a6-239209f83156",
             "614e3804-7d34-41ba-857f-811bad7c2b7a",
@@ -1221,7 +1207,6 @@ public class NamesUtils {
             "24295618-32d7-4a6c-a142-98b19d69b89f",
             "2c8fb177-1465-4586-9e23-6020b9606199",
             "4593d49a-7f67-46ba-9ec0-126bd676286f",
-            "5fee3020-513b-48c2-b1f7-4681b01db0c6",
             "88798869-338b-418e-9c47-97365444b734",
             "5c6f8874-cb53-4f4d-9168-cc2af8c7ecf9",
             "0cd117b2-2e21-406d-80cf-5ce0a6065e37",
@@ -1344,7 +1329,6 @@ public class NamesUtils {
             "e3489fd7-e93e-4232-bccb-f4261e3361d8",
             "fde548d0-4dc4-4331-8f1c-ca342911e5ea",
             "3c418647-3aa0-4f0b-b043-306f47855f52",
-            "61388717-2809-47e8-91cf-4c7f722a4c02",
             "373b3663-ecc3-40c4-9241-838ae8ca34d0",
             "8b0f05ce-354e-4121-9e0b-8b4732ea844f",
             "1ff72e8a-15a0-40a1-800e-b56241738827",
@@ -1352,7 +1336,6 @@ public class NamesUtils {
             "4757df70-6c3e-46b8-99c0-a68644595c9a",
             "e0140a67-e4d1-4f13-8a01-364355bee46e",
             "1def2cdc-a6ec-4972-8614-204e13301650",
-            "e783857a-203c-45cd-8ff3-dba745238be6",
             "52722de9-8e80-45dd-becc-74ffb913e205",
             "164f0d73-1234-4e2c-8743-d77bf2191051",
             "03647192-f55b-42b2-9a74-db28fcae8fd1",
@@ -1439,7 +1422,6 @@ public class NamesUtils {
             "06db73fd-57e2-4a6f-bcd3-699fb7bb7af4",
             "79887c09-b424-4076-92c5-bd390a3d4c85",
             "03f2f28f-53ab-4d88-a659-0b8dfa0bfd70",
-            "31b6b7f8-d5d6-4915-9567-b158525e8948",
             "494e8d09-f85b-4543-892f-a5096aed1cd4",
             "3fd173ef-8647-45ab-80b5-6135c422bfee",
             "5dfdca28-9ddc-4853-933c-8bc97d87beec",
@@ -1450,11 +1432,9 @@ public class NamesUtils {
             "6781af9a-175c-4b27-917d-da89060aa15d",
             "692915bd-bc68-4db7-af7a-4e2b091a264c",
             "db3ed2cd-ede2-472e-ae20-b4aeae16e5f8",
-            "22e39ab1-bb7a-4c9d-8254-9d68c627808d",
             "c890419c-5ae8-453c-8338-2cdde2bcf44e",
             "b134d1bf-c7c7-4427-93ac-9fdbc2b59ef1",
             "375a3c4c-7898-47f0-ad0e-443a75148c7a",
-            "4439c2fd-a754-4f6a-b3a6-791b47726156",
             "209e47f9-df65-47bd-9a40-4fb4c5c9c349",
             "b3ae82c2-e60b-4551-a76d-6620f1b456aa",
             "c47267ed-7482-40bb-a4ea-e1399cc8ce04",
@@ -1724,7 +1704,6 @@ public class NamesUtils {
             "e34e41f2-f480-45d3-8190-a3ce5ab34fab",
             "47c8a452-4efb-45b4-a0d3-df506dbe42b2",
             "682567af-d24e-4656-8435-c5f90320bc47",
-            "1309cfb5-9322-4fe7-888d-6c5e1ffc761c",
             "6b8acafe-784e-433e-b2e5-0720568ea225",
             "c8b03190-306c-4120-bb0b-6f2ebfc06ea9",
             "6fe07aa5-fec0-4eca-a456-f29bff451b04",
@@ -1742,7 +1721,6 @@ public class NamesUtils {
             "4fdef2b4-b4a1-4dc8-96a9-139f8d89b70b",
             "99af78a1-6180-4827-b424-7ae18fe856e6",
             "adb4e8ea-0932-4e4b-9e69-f48feee90ce1",
-            "cf07508b-4762-4650-990a-23376e023f55",
             "451a05a4-4997-4da4-a15f-2aeaa1236ef9",
             "6041bca6-d070-4894-8019-da9538f2c33d",
             "584c04d2-4acc-491b-8a0a-e63133f4bfc4",
@@ -1762,8 +1740,900 @@ public class NamesUtils {
             "65f2d0e7-d55b-4155-b791-0b820642564f",
             "afc99b75-f453-4123-8bd7-3aeea65cb521",
             "5b946a83-b395-4016-b67f-c71690f9a866",
-            "00ed154e-8679-42f0-8f42-e59bd7e185af"};
+            "00ed154e-8679-42f0-8f42-e59bd7e185af",};
+    public static int[] buzzCodes = {
+            1054,
+            557,
+            1346,
+            231,
+            19004,
+            8329,
+            5427,
+            755031,
+            322,
+            7302617,
+            1370,
+            740,
+            92907,
+            14322,
+            2414,
+            1354,
+            323,
+            608675,
+            167954,
+            1486,
+            2406152,
+            3804,
+            6586472,
+            1031182,
+            1502,
+            607644,
+            1609,
+            7141758,
+            6111,
+            19070,
+            504,
+            2963,
+            2622,
+            7879,
+            2834,
+            39743,
+            2407,
+            2824,
+            500963,
+            2992,
+            2370,
+            607940,
+            4513813,
+            469065,
+            295,
+            6586472,
+            86725,
+            7136,
+            2377,
+            13783,
+            54911,
+            5631798,
+            1268248,
+            846295,
+            561,
+            7347,
+            68790,
+            19621,
+            5696,
+            359853,
+            7264,
+            3121172,
+            1358,
+            810,
+            4845,
+            63401,
+            9527,
+            1289,
+            4854470,
+            4046015,
+            3785,
+            531,
+            545,
+            5561826,
+            78620,
+            486,
+            1452,
+            152608,
+            6390171,
+            1505,
+            2369257,
+            1539788,
+            1202460,
+            41814,
+            6410242,
+            945127,
+            672,
+            931,
+            808,
+            4514722,
+            235008,
+            6529235,
+            31735,
+            108661,
+            1392,
+            8447,
+            811134,
+            1440,
+            14129,
+            1071,
+            532,
+            1363075,
+            5410580,
+            13924,
+            9191,
+            1115848,
+            1071,
+            65389,
+            2522,
+            315058,
+            881,
+            6672689,
+            5412,
+            843176,
+            429239,
+            111,
+            1985344,
+            1808,
+            732,
+            2383,
+            4848544,
+            7245,
+            1357,
+            512,
+            1623,
+            7438407,
+            6905570,
+            150,
+            689,
+            6664470,
+            1787,
+            547,
+            812522,
+            7103288,
+            590583,
+            4827,
+            496,
+            1796,
+            19092,
+            8567,
+            6417673,
+            199726,
+            2400,
+            10458,
+            546543,
+            605841,
+            228,
+            2272,
+            22,
+            316,
+            8322,
+            949,
+            206,
+            3962,
+            45033,
+            6775317,
+            379,
+            7214218,
+            58263,
+            469600,
+            6444105,
+            75543,
+            41911,
+            4901,
+            7854,
+            3014334,
+            4882463,
+            289630,
+            3611380,
+            5807,
+            9501,
+            748,
+            1979,
+            1580481,
+            786,
+            14794,
+            3612547,
+            607323,
+            15204,
+            4277,
+            7318,
+            5060757,
+            6501141,
+            14241,
+            443690,
+            9182,
+            4898,
+            808248,
+            1730657,
+            1178,
+            953716,
+            2757751,
+            199074,
+            165,
+            2579,
+            5898331,
+            1791,
+            2238210,
+            36663,
+            823,
+            452443,
+            289630,
+            4971620,
+            1407,
+            1047232,
+            718710,
+            11692,
+            278,
+            236679,
+            761731,
+            234668,
+            4729,
+            13628,
+            272,
+            5194973,
+            20400,
+            972159,
+            607130,
+            1551,
+            2507801,
+            2833607,
+            200326,
+            14838,
+            574,
+            5205782,
+            3309827,
+            1425,
+            46042,
+            882169,
+            198363,
+            939,
+            155,
+            44,
+            1533,
+            605914,
+            112781,
+            6877,
+            321,
+            1634,
+            861,
+            2476,
+            1170,
+            227,
+            51436,
+            955,
+            4893665,
+            913910,
+            746,
+            8159,
+            18,
+            903,
+            284,
+            804887,
+            1590249,
+            6403173,
+            1336,
+            19809,
+            1411,
+            4730749,
+            7522436,
+            389,
+            3400,
+            1544,
+            768,
+            21444,
+            6573257,
+            432749,
+            5775,
+            7316,
+            1374,
+            39465,
+            11249,
+            1439,
+            3824,
+            1026,
+            55786,
+            3909430,
+            773,
+            433366,
+            813715,
+            1502840,
+            1804111,
+            2385658,
+            30,
+            33164,
+            3579,
+            8480,
+            3314086,
+            954784,
+            139,
+            769,
+            4195349,
+            197,
+            45919,
+            201066,
+            1062,
+            4374230,
+            3642,
+            840653,
+            2802,
+            49681,
+            27015,
+            1951024,
+            957537,
+            4046708,
+            10609,
+            4320,
+            2973,
+            1602,
+            421871,
+            258,
+            2693,
+            1887,
+            109729,
+            10494,
+            828,
+            718321,
+            4045884,
+            271,
+            75782,
+            4698132,
+            1519,
+            210,
+            20172,
+            17360,
+            327,
+            11561,
+            1914869,
+            18267,
+            16622,
+            159,
+            4121560,
+            17350,
+            4853394,
+            1159,
+            1410,
+            3548455,
+            7359943,
+            1637,
+            10,
+            796,
+            738824,
+            688,
+            991,
+            610595,
+            8062,
+            19472,
+            847566,
+            34097,
+            63805,
+            1247142,
+            1869,
+            5717719,
+            48500,
+            199568,
+            471,
+            2498549,
+            232,
+            171404,
+            1107,
+            476,
+            255,
+            529648,
+            1440077,
+            4664471,
+            1256797,
+            1938,
+            11122,
+            6585044,
+            62367,
+            1185247,
+            3404481,
+            11576,
+            256,
+            607804,
+            39259,
+            79214,
+            319,
+            3622674,
+            594,
+            42496,
+            201,
+            19274,
+            4941,
+            3939554,
+            99821,
+            4270066,
+            164708,
+            625292,
+            5480,
+            12833,
+            44112,
+            19446,
+            192,
+            4761997,
+            3886239,
+            6777125,
+            6410341,
+            513,
+            5713,
+            7106950,
+            7541336,
+            2743091,
+            1114,
+            61477,
+            2499,
+            1023,
+            38149,
+            812510,
+            603415,
+            983019,
+            236,
+            23307,
+            3910963,
+            2525297,
+            4541,
+            608005,
+            4617,
+            287,
+            11133,
+            122416,
+            1017919,
+            23475,
+            5729176,
+            169,
+            3564931,
+            1376,
+            1355,
+            6573867,
+            164335,
+            16407,
+            464257,
+            1418,
+            196,
+            939507,
+            128256,
+            656,
+            9315,
+            6580,
+            6386685,
+            171762,
+            65360,
+            938,
+            745,
+            178,
+            379,
+            440019,
+            939098,
+            109,
+            973,
+            7422,
+            463835,
+            90,
+            723429,
+            5074,
+            4108242,
+            1116670,
+            6595118,
+            4032662,
+            812166,
+            808637,
+            1376,
+            1871,
+            2262174,
+            15640,
+            6333478,
+            1241491,
+            14733,
+            4958,
+            3716,
+            463904,
+            13,
+            4242,
+            607888,
+            1345,
+            1361,
+            5054089,
+            4897,
+            1422,
+            7146216,
+            2599,
+            12791,
+            268,
+            727387,
+            1214,
+            538,
+            198179,
+            16043,
+            5701527,
+            233989,
+            816135,
+            4571183,
+            94633,
+            9,
+            202,
+            164,
+            267614,
+            670,
+            715296,
+            31865,
+            468554,
+            1539,
+            5448,
+            919952,
+            718,
+            39967,
+            4248056,
+            44551,
+            4181,
+            164217,
+            605608,
+            1833,
+            6500275,
+            1344,
+            6348891,
+            4743096,
+            170,
+            12591,
+            1667562,
+            7324258,
+            1335,
+            21,
+            7019660,
+            166,
+            78153,
+            601,
+            4034634,
+            233750,
+            6104002,
+            4000616,
+            1872,
+            9155,
+            660,
+            180594,
+            419076,
+            1396,
+            878892,
+            4865136,
+            15981,
+            7383928,
+            195497,
+            27968,
+            467421,
+            3769,
+            607593,
+            645644,
+            301,
+            5631797,
+            508,
+            142,
+            2499406,
+            3390746,
+            200122,
+            18102,
+            495804,
+            9984,
+            27967,
+            1182,
+            3349480,
+            1664,
+            742,
+            6109,
+            1830,
+            636,
+            490,
+            2681,
+            2977,
+            662,
+            757523,
+            812157,
+            1348,
+            682492,
+            11101,
+            147,
+            2544134,
+            305,
+            6386117,
+            432787,
+            814351,
+            488838,
+            4464512,
+            79214,
+            1,
+            171,
+            1253521,
+            808799,
+            3716159,
+            4635,
+            6584535,
+            3990353,
+            2520,
+            745864,
+            4621372,
+            3660,
+            3384780,
+            77140,
+            6215447,
+            16951,
+            84994,
+            1441,
+            193,
+            207,
+            161,
+            6424778,
+            5835,
+            2972,
+            176,
+            221,
+            197225,
+            5835,
+            16161,
+            492,
+            847672,
+            2667304,
+            67029,
+            6705,
+            4394498,
+            752725,
+            1795650,
+            146,
+            4350813,
+            1254,
+            184,
+            8011,
+            812,
+            8832,
+            484,
+            702,
+            315,
+            6183,
+            503,
+            497,
+            7032000,
+            51421,
+            40606,
+            425582,
+            118890,
+            4287554,
+            435916,
+            762,
+            1255509,
+            143,
+            12854,
+            11334,
+            127397,
+            11003,
+            671,
+            472,
+            6268660,
+            1373,
+            679,
+            1430756,
+            4384780,
+            1483,
+            1935,
+            3548,
+            51496,
+            8488,
+            1518,
+            692,
+            577,
+            1104,
+            759933,
+            2968,
+            603087,
+            771338,
+            3252766,
+            1858,
+            4827379,
+            1717,
+            18509,
+            2275,
+            58324,
+            21389,
+            10767,
+            338,
+            1297506,
+            7032,
+            330,
+            2533151,
+            1050004,
+            5730,
+            1152,
+            1366,
+            1550,
+            185,
+            3368778,
+            2262,
+            520,
+            284590,
+            524,
+            11826,
+            195575,
+            5398,
+            667,
+            6444143,
+            5497,
+            2603,
+            12637,
+            4709808,
+            424561,
+            20045,
+            964727,
+            4287334,
+            3597068,
+            20931,
+            5075832,
+            5075832,
+            1884648,
+            5606682,
+            37387,
+            14503,
+            13445,
+            5796474,
+            84878,
+            4392433,
+            552,
+            608210,
+            1835,
+            5596127,
+            500,
+            5210243,
+            588648,
+            135493,
+            115426,
+            169812,
+            1557,
+            28227,
+            446,
+            9250,
+            3587186,
+            90048,
+            1619,
+            877,
+            94009,
+            1669761,
+            4345187,
+            9878,
+            696,
+            5717,
+            907728,
+            4853379,
+            1542,
+            3542332,
+            498,
+            2455,
+            794,
+            252,
+            14932,
+            1157548,
+            1585,
+            710,
+            739442,
+            1249336,
+            69801,
+            307,
+            88122,
+            1202661,
+            855,
+            915,
+            400301,
+            5731,
+            16217,
+            2442,
+            456219,
+            6876783,
+            1171,
+            1721799,
+            639217,
+            6683466,
+            3347022,
+            3125340,
+            4330314,
+            446910,
+            6991042,
+            209,
+            656259,
+            3634,
+            4301,
+            8073,
+            1205094,
+            11980,
+            4,
+            738,
+            5267002,
+            608364,
+            3345208,
+            3948956,
+            1205263,
+            5007,
+            920718,
+            38,
+            607816,
+            236798,
+            13335,
+            437104,
+            2201,
+            19776,
+            1909,
+            759302,
+            14394,
+            590284,
+            810844,
+            5764159,
+            807677,
+            11424,
+            15767,
+            702843,
+            1004690,
+            3043887,
+            594087,
+            195470,
+            4477592,
+            151,
+            57943,
+            1180405,
+            459165,
+            7534640,
+            522,
+            736,
+            597,
+            17478,
+            1253621,
+            469,
+            1341,
+            1202685,
+            238,
+            6579912,
+            1350,
+            331,
+            13031,
+            621,
+            1460,
+            2978,
+            1803,
+            607939,
+            2803884,
+            7051,
+            11888,
+            1337,
+            4906,
+            6424512,
+            858337,
+            2775824,
+            496669,
+            167829,
+            4397,
+            812850,
+            11632,
+            7695,
+            2732,
+            139824,
+            231603,
+            37898,
+            854847,
+            4042826,
+            4810492,
+            4924,
+            10856,
+            4879068,
+            608488,
+            6452608,
+            2623,
+            12377
+    };
 
+    public static void main(String[] args){
+        ArrayList<Integer> keep = new ArrayList<>();
+        for (int i = 0; i < buzzCodes.length; i++)
+        {
+            if (buzzCodes[i] < 0)
+                keep.add(i);
+        }
+        for (int i = 0; i < buzzCodes.length; i++)
+        {
+            if (keep.contains(i))
+                continue;
+            System.out.println(buzzCodes[i] + ",");
+        }
+        for (int i = 0; i < artistIDs.length; i++)
+        {
+            if (keep.contains(i))
+                continue;
+            System.out.println("\"" + artistIDs[i] + "\",");
+        } for (int i = 0; i < names.length; i++)
+        {
+            if (keep.contains(i))
+                continue;
+            System.out.println("\"" + names[i] + "\",");
+        }
+
+    }
 public NamesUtils(Context c){
         DaoSession daoSession = ((TBApplication)c).getDaoSession();
         if(daoSession.getArtistDao().loadAll().size()==0)
