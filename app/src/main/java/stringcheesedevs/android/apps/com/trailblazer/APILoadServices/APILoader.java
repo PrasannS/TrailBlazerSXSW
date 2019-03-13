@@ -10,11 +10,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-//import okhttp3.logging.HttpLoggingInterceptor;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,42 +38,54 @@ public class APILoader {
     private final static String setlistkey = "cd0dc450-b5ca-4d12-9f1e-410e19057f50";
 
     public static void main(String [] args){
-        loadBuzz("03-01-2019", 794);
-
         loadPrevCities("6041bca6-d070-4894-8019-da9538f2c33d");
+    }
+
+    public static List<City> jsonparse(String json){
+        Scanner scan = new Scanner(json);
+        String line ="";
+        City cur = new City();
+        List<City> cities = new ArrayList<>();
+        while(scan.hasNextLine()){
+            line = scan.nextLine();
+            if(line.contains("city id")){
+                cur.setName(line.substring(line.indexOf("name")+6,line.indexOf("state")-1));
+            }
+            else if(line.contains("coords")) {
+                cur.setLatitude(Double.parseDouble(line.substring(line.indexOf('=')+2,line.indexOf("long")-2)));
+                cur.setLongitude(Double.parseDouble(line.substring(line.lastIndexOf("=")+2,line.indexOf('>')-2)));
+                cities.add(cur);
+                cur = new City();
+            }
+
+            //if(line.contains())
+        }
+        return cities;
 
     }
-    public static void loadBuzz(String date, int artistID)
-    {
+
+
+    public static List<City> loadPrevCities(String s) {
+        String temp = "";
         try
-        {
-            ProcessBuilder pb = new ProcessBuilder("curl", "-X", "GET", "https://api.buzzanglemusic.com/v2/artists/794/market/country/US?date=03-01-2019", "-H", "accept: application/json", "-H", "api-key: 8A08BBCC-9553-47B2-A56E-03C6F53AD6E4");
-            Process p = pb.start();
+        { ProcessBuilder pb = new ProcessBuilder("curl", "-X", "GET", "--header", "Accept:", "application/xml", "--header", "x-api-key: cd0dc450-b5ca-4d12-9f1e-410e19057f50", "https://api.setlist.fm/rest/1.0/artist/6041bca6-d070-4894-8019-da9538f2c33d/setlists?p=1");
+        Process p = pb.start();
             BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            for (int i = 0; i < 100; i++)
-                System.out.println(reader.readLine());
+            String line = reader.readLine();
+            while (line != null){
+                System.out.println(line);
+                temp+=line;
+                line = reader.readLine();
+            }
+
 
         }
         catch (Exception e)
         {
 
         }
-    }
 
-    public static void loadPrevCities(String s) {
-        try
-        {
-            ProcessBuilder pb = new ProcessBuilder("curl", "-X", "GET", "--header", "Accept:", "application/xml", "--header", "x-api-key: cd0dc450-b5ca-4d12-9f1e-410e19057f50", "https://api.setlist.fm/rest/1.0/artist/" + s + "/setlists?p=1");
-            Process p = pb.start();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            for (int i = 0; i < 100; i++)
-                System.out.println(reader.readLine());
-
-        }
-        catch (Exception e)
-        {
-
-        }
+        return jsonparse(temp);
 
 //        Interceptor interceptor = new Interceptor() {
 //            @Override
