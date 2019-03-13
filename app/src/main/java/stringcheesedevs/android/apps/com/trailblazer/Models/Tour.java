@@ -5,7 +5,7 @@ import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Property;
 import org.greenrobot.greendao.annotation.Generated;
 
-@Entity(nameInDb = "comment")
+@Entity(nameInDb = "tour")
 public class Tour {
     @Property(nameInDb = "code")
     String code;

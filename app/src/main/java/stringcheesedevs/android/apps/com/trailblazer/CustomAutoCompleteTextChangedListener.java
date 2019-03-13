@@ -39,7 +39,12 @@ public class CustomAutoCompleteTextChangedListener implements TextWatcher {
         Dashboard dashboard = ((Dashboard) context);
 
         // query the database based on the user input
+        if(dashboard.getItemsFromDb(userInput.toString()).length!=0)
         dashboard.item = dashboard.getItemsFromDb(userInput.toString());
+        else {
+            String[] tests = {"Arjit Singh","Neha Kakkad","Palak Muchhal"};
+            dashboard.item = tests;
+        }
 
         // update the adapater
         dashboard.myAdapter.notifyDataSetChanged();
