@@ -35,7 +35,7 @@ public class Dashboard extends Activity {
     // for database operations
 
     // just to add some initial value
-    String[] item = new String[] {"Please search..."};
+    String[] item = new String[] {"Enter an artist..."};
 
 
     public DaoSession daoSession;
