@@ -111,4 +111,11 @@ public class ToursActivity extends Activity {
             cur++;
         }
     }
+
+    /*
+    * vs[0] += t.get("song_streams").getAsJsonObject().get("ondemand_audio").getAsJsonObject().get("value").getAsDouble();
+vs[1] += t.get("song_streams").getAsJsonObject().get("programmed_streams").getAsJsonObject().get("value").getAsDouble();
+vs[2] += t.get("song_streams").getAsJsonObject().get("ondemand_audio").getAsJsonObject().get("value").getAsDouble();
+vs[3] += t.get("song_sales").getAsJsonObject().get("value").getAsDouble();                                                     */
+
 }
