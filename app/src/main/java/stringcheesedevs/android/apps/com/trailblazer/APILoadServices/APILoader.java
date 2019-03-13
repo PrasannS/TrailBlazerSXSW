@@ -40,20 +40,32 @@ public class APILoader {
         loadPrevCities("6041bca6-d070-4894-8019-da9538f2c33d");
     }
 
+    public static List<City> jsonparse(String json){
+        BufferedReader br = new BufferedReader();
 
-    public static void loadPrevCities(String s) {
+    }
+
+
+    public static List<City> loadPrevCities(String s) {
+        String temp = "";
         try
         { ProcessBuilder pb = new ProcessBuilder("curl", "-X", "GET", "--header", "Accept:", "application/xml", "--header", "x-api-key: cd0dc450-b5ca-4d12-9f1e-410e19057f50", "https://api.setlist.fm/rest/1.0/artist/6041bca6-d070-4894-8019-da9538f2c33d/setlists?p=1");
         Process p = pb.start();
             BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            for (int i = 0; i < 100; i++)
-                System.out.println(reader.readLine());
+            String line = reader.readLine()
+            while (line != null){
+                temp+=line;
+                line = reader.readLine();
+            }
+
 
         }
         catch (Exception e)
         {
 
         }
+
+        return jsonparse(temp);
 
 //        Interceptor interceptor = new Interceptor() {
 //            @Override

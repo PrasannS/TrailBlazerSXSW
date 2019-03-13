@@ -1,5 +1,6 @@
 package stringcheesedevs.android.apps.com.trailblazer;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -15,13 +16,15 @@ import stringcheesedevs.android.apps.com.trailblazer.Models.Tour;
 public class ToursActivity extends AppCompatActivity {
 
     public List<Tour>tours;
+    String artistname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tours);
-        //TODO Set this load to load from BuzzAngle / Use Samuels Algo
-        setTours("hi");
+        //TODO this is the artistname
+        Intent intent = getIntent();
+        String artistname = intent.getStringExtra("artist");
 
         ArrayAdapter adapter = new ArrayAdapter<>(this,
                 R.layout.listview, getTourNames());
