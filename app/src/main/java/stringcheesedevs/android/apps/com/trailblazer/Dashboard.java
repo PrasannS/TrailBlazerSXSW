@@ -1,6 +1,7 @@
 package stringcheesedevs.android.apps.com.trailblazer;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.database.sqlite.SQLiteException;
 import android.support.v4.app.FragmentTransaction;
@@ -69,6 +70,7 @@ public class Dashboard extends Activity {
                     myAutoComplete.performCompletion();
                     cur = myAutoComplete.getText().toString();
                     //TODO open up artist page
+                    openTours();
 
 
                 }
@@ -104,5 +106,11 @@ public class Dashboard extends Activity {
             cur++;
         }
         return as;
+    }
+
+    public void openTours(){
+        Intent intent = new Intent(this,Dashboard.class);
+        intent.putExtra("artist",myAutoComplete.getText().toString());
+        startActivity(intent);
     }
 }
