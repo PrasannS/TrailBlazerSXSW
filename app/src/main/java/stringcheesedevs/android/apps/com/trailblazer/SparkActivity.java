@@ -18,7 +18,7 @@ import android.widget.LinearLayout;
 public class SparkActivity extends Activity {
     private WebView sparkBrowse;
     private LinearLayout largeLin;
-    String js = "javascript:document.getElementById(\"pac-input\").value = \"Houston, TX, USA\";";
+    String js = "javascript:var useless =document.getElementById(\"pac-input\").value = \"Houston, TX, USA\";";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         largeLin = (LinearLayout) findViewById(R.id.largeLin);

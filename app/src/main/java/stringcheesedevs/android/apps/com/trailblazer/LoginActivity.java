@@ -34,7 +34,7 @@ public class LoginActivity extends Activity {
         startActivity(intent);
     }
     public void openSpark(){
-        Intent intent = new Intent(this,SparkLoginActivity.class);
+        Intent intent = new Intent(this,SparkActivity.class);
         startActivity(intent);
     }
 }

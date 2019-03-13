@@ -13,11 +13,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.greenrobot.greendao.query.QueryBuilder;
 import stringcheesedevs.android.apps.com.trailblazer.APILoadServices.APILoader;
-import stringcheesedevs.android.apps.com.trailblazer.Models.Artist;
-import stringcheesedevs.android.apps.com.trailblazer.Models.City;
-import stringcheesedevs.android.apps.com.trailblazer.Models.DaoSession;
-import stringcheesedevs.android.apps.com.trailblazer.Models.Tour;
+import stringcheesedevs.android.apps.com.trailblazer.Models.*;
 import stringcheesedevs.android.apps.com.trailblazer.Utils.NamesUtils;
 
 public class ToursActivity extends Activity {
@@ -53,6 +51,21 @@ public class ToursActivity extends Activity {
 
     }
 
+    public List<City> getunvisitedCities(Artist a){
+        QueryBuilder<City> qb = daoSession.getCityDao().queryBuilder();
+        qb.where(qb.and(CityDao.Properties.Artist.eq(a.getName()),CityDao.Properties.TourCode.notEq("ALREADY")));
+        return  qb.list();
+    }
+
+    //parameter - artist name
+    public List<City> getAllCities(String a){
+        QueryBuilder<City> qb = daoSession.getCityDao().queryBuilder();
+        qb.where(CityDao.Properties.Artist.eq(a));
+        return  qb.list();
+    }
+
+
+
     public void setTours(String artistname) {
         tours =  new ArrayList<>();
     }
@@ -65,5 +78,11 @@ public class ToursActivity extends Activity {
             cur++;
         }
         return as;
+    }
+
+    public boolean isVisited(City c){
+        QueryBuilder<City> qb = daoSession.getCityDao().queryBuilder();
+        qb.and(CityDao.Properties.Artist.eq(c.getArtist()),CityDao.Properties.TourCode.eq("ALREADY"));
+        return  qb.list().size()!=0;
     }
 }

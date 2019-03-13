@@ -45,7 +45,7 @@ public class APILoader {
     private final static String setlistkey = "cd0dc450-b5ca-4d12-9f1e-410e19057f50";
 
 
-    public static List<City> jsonparse(String json){
+    public static List<City> jsonparse(String json,String artist){
         Scanner scan = new Scanner(json);
         String line ="";
         City cur = new City();
@@ -58,6 +58,8 @@ public class APILoader {
             else if(line.contains("coords")) {
                 cur.setLatitude(Double.parseDouble(line.substring(line.indexOf('=')+2,line.indexOf("long")-2)));
                 cur.setLongitude(Double.parseDouble(line.substring(line.lastIndexOf("=")+2,line.indexOf('>')-2)));
+                cur.setTourCode("ALREADY");
+                cur.setArtist(artist);
                 cities.add(cur);
                 cur = new City();
             }
@@ -189,7 +191,7 @@ public class APILoader {
                 System.out.println(line);
                 line = reader.readLine();
             }
-            List<City> cities = jsonparse(line);
+            List<City> cities = jsonparse(line,s);
             return cities;
 
 
