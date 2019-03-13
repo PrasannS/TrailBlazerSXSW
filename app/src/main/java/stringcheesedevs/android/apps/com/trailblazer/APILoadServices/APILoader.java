@@ -10,7 +10,13 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -37,6 +43,41 @@ public class APILoader {
     private final static String umgkey = "";
     private final static String setlistkey = "cd0dc450-b5ca-4d12-9f1e-410e19057f50";
 
+    public static Map<String,Double[]> parseBuzz(String json){
+        Gson gson = new Gson();
+        Map<String,Double[]>vals  = new TreeMap();
+        JsonObject body = gson.fromJson(json, JsonObject.class);
+        JsonArray results = body.get("data").getAsJsonArray();
+        for(int i = 0;i<results.size();i++){
+            JsonObject t = results.get(i).getAsJsonObject();
+            Double[] vs = new Double[4];
+            vs[0] = t.get("song_streams").getAsJsonObject().get("ondemand_audio").getAsJsonObject().get("value").getAsDouble();
+            vs[1] = t.get("song_streams").getAsJsonObject().get("programmed_streams").getAsJsonObject().get("value").getAsDouble();
+            vs[2] = t.get("song_streams").getAsJsonObject().get("ondemand_audio").getAsJsonObject().get("value").getAsDouble();
+            vs[3] = t.get("song_sales").getAsJsonObject().get("value").getAsDouble();
+            vals.put(t.get("market_name").getAsString(),vs);
+        }
+        return vals;
+    }
+
+    public static Map<String,Double[]> parseBuzz(String json,Map<String,Double[]> prev){
+        Gson gson = new Gson();
+        JsonObject body = gson.fromJson(json, JsonObject.class);
+        JsonArray results = body.get("data").getAsJsonArray();
+        for(int i = 0;i<results.size();i++){
+            JsonObject t = results.get(i).getAsJsonObject();
+            Double[] vs = prev.get(t.get("market_id").getAsInt());
+            vs[0] += t.get("song_streams").getAsJsonObject().get("ondemand_audio").getAsJsonObject().get("value").getAsDouble();
+            vs[1] += t.get("song_streams").getAsJsonObject().get("programmed_streams").getAsJsonObject().get("value").getAsDouble();
+            vs[2] += t.get("song_streams").getAsJsonObject().get("ondemand_audio").getAsJsonObject().get("value").getAsDouble();
+            vs[3] += t.get("song_sales").getAsJsonObject().get("value").getAsDouble();
+            prev.put(t.get("market_name").getAsString(),vs);
+        }
+        return prev;
+    }
+
+
+
     public static void main(String [] args) throws IOException {
         for (int i = 0; i < NamesUtils.names.length; i++){
             String name = "";
@@ -62,9 +103,10 @@ public class APILoader {
         }
 
     }
-    public static void loadBuzz(int artistID)
+    public static Map<String,Double[]> loadBuzz(int artistID)
     {
         double[] avgs = new double[5];
+        Map<String,Double[]> map = new TreeMap<>();
         try
         {
             String []weeks = {"2019-03-01"
@@ -72,6 +114,8 @@ public class APILoader {
             ,"2019-02-22"
             ,"2019-02-15"};
 
+
+            int temp = 0;
             for(String week:weeks){
                 ProcessBuilder pb = new ProcessBuilder("curl", "-X", "GET", "https://api.buzzanglemusic.com/v2/artists/"+artistID+"/market/country/US?date="+week, "-H", "accept: application/json", "-H", "api-key: 8A08BBCC-9553-47B2-A56E-03C6F53AD6E4");
                 Process p = pb.start();
@@ -82,13 +126,29 @@ public class APILoader {
                     System.out.println(line);
                     line = reader.readLine();
                 }
+                if(temp==0){
+                    map = parseBuzz(line);
+                }
+                else {
+                    map = parseBuzz(line,map);
+                }
             }
+
+
 
 
         }
         catch (Exception e)
         {
         }
+        for(String i:map.keySet()){
+            Double[] d = map.get(i);
+            for(int a =0;a<4;a++){
+                d[a]/=4;
+            }
+            map.put(i,d);
+        }
+        return map;
     }
 
     public static void loadPrevCities(String s) {
