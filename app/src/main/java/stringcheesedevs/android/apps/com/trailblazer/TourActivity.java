@@ -10,13 +10,24 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.greenrobot.greendao.query.QueryBuilder;
+
+import java.util.List;
+
+import stringcheesedevs.android.apps.com.trailblazer.GeneratedModel.Setlist.City;
+import stringcheesedevs.android.apps.com.trailblazer.GeneratedModel.Setlist.Tour;
+import stringcheesedevs.android.apps.com.trailblazer.Models.CityDao;
+import stringcheesedevs.android.apps.com.trailblazer.Models.DaoSession;
+
 public class TourActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    public DaoSession daoSession;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        daoSession = ((TBApplication)getApplication()).getDaoSession();
         setContentView(R.layout.activity_tour);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -42,5 +53,15 @@ public class TourActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+    }
+
+    public void plotTour(GoogleMap googleMap, stringcheesedevs.android.apps.com.trailblazer.Models.Tour t){
+        QueryBuilder<stringcheesedevs.android.apps.com.trailblazer.Models.City> qb = daoSession.getCityDao().queryBuilder();
+        qb.where(CityDao.Properties.TourCode.eq(t.getCode()));
+        qb.orderAsc(CityDao.Properties.Pos);
+        List<stringcheesedevs.android.apps.com.trailblazer.Models.City> cities = qb.list();
+        for(stringcheesedevs.android.apps.com.trailblazer.Models.City c:cities){
+
+        }
     }
 }

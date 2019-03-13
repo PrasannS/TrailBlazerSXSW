@@ -50,4 +50,4 @@ public class AlbumPhysical {
         this.cassette = cassette;
     }
 
-}}
+}

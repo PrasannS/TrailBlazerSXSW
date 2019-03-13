@@ -13,7 +13,7 @@ public class APILoader {
     private final static String buzzanglekey = "";
     private final static String umgkey = "";
     private final static String setlistkey = "";
-
+/*
     public static String[] loadAllArtists(){
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
@@ -79,5 +79,5 @@ public class APILoader {
             }
         });
     }
-
+*/
 }

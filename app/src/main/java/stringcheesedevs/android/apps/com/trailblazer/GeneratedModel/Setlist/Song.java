@@ -1,9 +1,9 @@
-package stringcheesedevs.android.apps.com.trailblazer.Setlist;
+package stringcheesedevs.android.apps.com.trailblazer.GeneratedModel.Setlist;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Tour {
+public class Song {
 
     @SerializedName("name")
     @Expose
